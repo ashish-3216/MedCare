@@ -1,0 +1,7 @@
+.doctor_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 10px;
+    margin: 20px auto;
+}

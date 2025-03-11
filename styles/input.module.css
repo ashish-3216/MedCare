@@ -1,0 +1,51 @@
+/* Container for the input field */
+.input_container {
+    width: 512px;
+    height: 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input_label {
+    width: 46px; 
+    height: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #8C8C8C;
+}
+.input_wrapper{
+    width: 512px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 20px 24px; 
+    background-color: #f5f5f5;
+}
+/* Input field styling */
+.input_field{
+    width: 212px;
+    max-width: 100%;
+    height: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #0E2515;
+    background-color: #f5f5f5;
+    overflow: visible;
+    border: none;
+}
+input:focus {
+    width: 100%;
+    outline: none; 
+    border: none;   
+    box-shadow: none;
+}
+.input_icon{
+    width: 18x ;
+    height: 18px ;
+}
+.input_search{
+    width: 100% ;
+    height: 20px;
+    display: flex;
+    gap: 12px;
+}

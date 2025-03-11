@@ -1,0 +1,17 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+a:visited{
+  color: black;
+}
+body{
+  min-height: 100vh ;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
