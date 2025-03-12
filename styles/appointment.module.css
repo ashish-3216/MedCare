@@ -1,7 +1,233 @@
-.doctor_grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    grid-template-rows: repeat(2, 1fr); /* 2 rows */
-    gap: 10px;
-    margin: 20px auto;
+/* Prevent horizontal scrolling */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Main Container */
+.container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.hero {
+  width: 100%;
+  height: 243px;
+  border-radius: 16px;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+/* Text */
+#text {
+  width: 490px;
+  height: 39px;
+  font-weight: 500;
+  font-size: 32px;
+  white-space: nowrap;
+  color: #0e2515;
+}
+
+/* Search Field */
+.searchField {
+  width: 100%;
+  max-width: 1316px;
+  height: 68px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin: 0 auto; /* Center align */
+}
+
+/* Search Bar Container */
+.searchBar_container {
+  flex-grow: 1;
+  max-width: 1165px;
+  height: 68px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #374957;
+  padding: 24px;
+}
+
+/* Search Bar */
+.searchBar {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Search Input */
+.search {
+  flex-grow: 1;
+  height: 20px;
+  font-size: 16px;
+  border: none;
+  font-weight: 500;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+input::placeholder {
+  color: #afafaf;
+}
+
+/* Search Button */
+.searchButton {
+  width: 151px;
+  height: 68px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 24px 48px;
+  background-color: #1c4a2a;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Doctor Grid */
+.doctor_grid {
+  display: flex;
+  height: calc(100% - 88px);
+  flex-wrap: wrap ;
+  gap: 15px;
+  width: 100%;
+  /* max-width: 1200px; Restrict max width */
+}
+/* Doctor Container */
+.doctor_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 120px 60px 44px 60px;
+  align-items: center;
+}
+
+/* Title */
+.title {
+  width: 789;
+  height: 138;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+#text1 {
+  width: 557px; /* Added px */
+  height: 90px;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 150%;
+  letter-spacing: -1%;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: rgba(14, 37, 21, 1);
+}
+#text2 {
+  width: 789px;
+  height: 32px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 180%;
+  letter-spacing: -1%;
+  text-align: center;
+  vertical-align: middle;
+  color: rgba(140, 140, 140, 1);
+}
+.filterButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.filterButtons p {
+  width: 79px;
+  height: 22px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -1%;
+  vertical-align: middle;
+  color: rgba(14, 37, 21, 1);
+  white-space: nowrap;
+}
+.filterButtons button {
+  width: 53px;
+  height: 22px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -1%;
+  text-align: right;
+  vertical-align: middle;
+  color: rgba(28, 74, 42, 1);
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.main_stats {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+.leftBar {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Responsive Adjustments */
+@media screen and (max-width : 1280px) {
+  .doctor_grid{
+    width: 60%;
+  }
+  .leftBar{
+    width:20% ;
+  }
+}
+@media (max-width: 1024px) {
+  .doctor_grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .doctor_grid {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+
+  .hero {
+    padding: 30px 16px;
+  }
+
+  .searchField {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .searchBar_container {
+    width: 100%;
+  }
+
+  .searchButton {
+    width: 100%;
+    height: 50px;
+  }
 }
