@@ -1,6 +1,7 @@
 .container {
   width: 30%;
   /* max-width: 250px; */
+  min-width: 250px;
   height: 100%;
   border-radius: 16px;
   max-height: 400px;
@@ -13,7 +14,7 @@
   padding: 40px 27px;
 }
 .details {
-  width: 246px;
+  width: 100%;
   height: 250px;
   display: flex;
   flex-direction: column;
@@ -96,7 +97,7 @@
 .experience p {
   width: 58px;
   height: 29px;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
   line-height: 180%;
@@ -130,14 +131,14 @@
   object-fit: cover;
 }
 .book {
-  width: 270px;
-  height: 62px;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid #dedede;
   background-color: #f8fcf9;
-  padding: 20px 48px;
+  padding: 20px 28px;
   font-weight: 500;
   font-size: 18px;
   cursor: pointer;
   color: #0e2515;
+  text-align: center;
 }
