@@ -44,14 +44,19 @@ const Book_appointment = () => {
           </div>
         </div>
         <div className={styles.drop_down}>
-          <select name="live_location" id={styles.list}>
+          <select
+            name="live_location"
+            id={styles.list}
+            disabled={toggle} // Disable when Video Consult is selected
+            className={toggle ? styles.disabledDropdown : ""}
+          >
             <option id={styles.live_location}>
               MedicareHeart Institute, Okhla Road
             </option>
           </select>
         </div>
       </div>
-        <Book_Form
+      <Book_Form
         day_time={"Morning"}
         remaining_slots={"8"}
         slots_array={[

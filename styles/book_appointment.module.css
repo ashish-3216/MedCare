@@ -100,3 +100,8 @@
   border-radius: 8px;
   border: none;
 }
+.disabledDropdown {
+  pointer-events: none; /* Prevents interaction */
+  opacity: 0.5; /* Makes it look disabled */
+  background-color: #e0e0e0; /* Light grey */
+}
