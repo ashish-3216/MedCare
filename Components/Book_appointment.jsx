@@ -64,7 +64,7 @@ const Book_appointment = () => {
           "12:00 AM",
           "12:30 AM",
         ]}
-        img_url={"./sun.svg"}
+        img_url={"/sun.svg"}
       />
       <Book_Form
         day_time={"Afternoon"}
@@ -79,7 +79,7 @@ const Book_appointment = () => {
           "12:00 AM",
           "12:30 AM",
         ]}
-        img_url={"./sunset.svg"}
+        img_url={"/sunset.svg"}
       />
       <button className={styles.Next_button}>Next</button>
     </div>

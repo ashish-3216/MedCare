@@ -1,32 +1,29 @@
 .container {
-  width: 654.8722534179688;
-  flex-grow: 1;
-  border: 1px solid black;
-  margin: 10px auto;
+  width: 80%; 
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   gap: 20px;
+  background-color: white;
 }
 .schedule_appointment {
-  width: 604.9677734375;
-  height: 164.69229125976562;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 .top_text {
-  width: 264.8006286621094;
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .top {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .top_text p {
   width: 263.7821350097656;
@@ -49,14 +46,14 @@
   border: none;
 }
 .tab {
-  width: 601.0388793945312;
+  width: 100%;
   height: 38.5850715637207;
   border: 1px solid rgba(244, 215, 208, 1);
   display: flex;
 }
 .video_consult,
 .hospital_visit {
-  width: 300.0129699707031;
+  width: 50%;
   height: 38.585044860839844;
   border: 1px solid rgba(244, 215, 208, 1);
   background: rgba(255, 255, 255, 1);
@@ -70,11 +67,11 @@
   letter-spacing: 0%;
 }
 .drop_down {
-  width: 602.0587768554688;
+  width: 100%;
   height: 38.585044860839844;
 }
 #list {
-  width: 602.0587768554688;
+  width: 100%;
   height: 38.585044860839844;
   padding: 10px;
   border: 1px solid rgba(211, 212, 219, 1);
@@ -88,8 +85,11 @@
 #list:focus {
   outline: none;
 }
+#list:active{
+  outline: none;
+}
 .Next_button {
-  width: 601.0403442382812;
+  width: 100%;
   height: 41.4083366394043;
   background: rgba(28, 74, 42, 1);
   color: white;

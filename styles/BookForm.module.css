@@ -1,6 +1,4 @@
 .time{
-    width: 602.92px;
-    height: 196.99px;
     box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.098);
     background-color: rgba(255, 255, 255, 1);
 
@@ -12,7 +10,6 @@
 }
 .leftSide{
     width: 118.64px;
-    height: 21.65px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,14 +17,11 @@
 }
 .leftSide .shift{
     width: 77.4px;
-    height: 19.76px;
     font-weight: 700;
     size: 17px;
     color: rgba(0, 0, 0, 1);
 }
 .rightSide{
-    width: 75.37px;
-    height: 24.47px;
     background-attachment: rgba(250, 245, 255, 1);
     border-radius: 20px;
     border: 1px solid rgba(237, 235, 255, 1);
@@ -36,14 +30,10 @@
     align-items: center;
 }
 .remaining_slots{
-    height: 42.78px;
-    height: 14.12px;
     font-weight: 700;
     font-size: 12px;
 }
 .slot_container{
-    width: 525.73px;
-    height: 86.58px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -58,8 +48,8 @@
     align-items: center;
 }
 .slot{
-    width: 116.1px;
-    height: 37.64px;
+    width: 20%;
+    padding: 10px;
     font-weight: 600;
     size: 14px;
     color:rgba(0, 0, 0, 1);
