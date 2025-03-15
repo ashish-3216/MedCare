@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import styles from "../styles/input.module.css";
 
 const InputComponent = ({
@@ -7,7 +8,9 @@ const InputComponent = ({
   input_type,
   img_url,
   placeholder_name,
+  isPasswordFlag = false 
 }) => {
+  const [toggleState,setToggle] = useState(false) ;
   return (
     <div className={styles.input_container}>
       <label htmlFor={input_type} className={styles.input_label}>
@@ -18,10 +21,13 @@ const InputComponent = ({
           <img src={img_url} className={styles.input_icon} alt="icon" />
           <input
                     className={styles.input_field}
-                    type={input_type}
+                    type={toggleState ? "text" : input_type}
                     placeholder={placeholder_name}
                 />
         </div>
+        {isPasswordFlag && <img src="Eye.svg" alt="toggle password" role="button" id={styles.toggle} onClick={()=>{
+          setToggle(!toggleState)
+        }}/>}
       </div>
     </div>
   );

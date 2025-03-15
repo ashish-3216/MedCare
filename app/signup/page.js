@@ -44,6 +44,7 @@ const LoginComponent = () => {
             input_type="password"
             img_url="./Lock.svg"
             placeholder_name="Enter Your Password"
+            isPasswordFlag = {true}
           />
           <Button_component text="Login" color="#1C4A2A" />
           <Button_component text="Reset" color="#C6B09A" />

@@ -14,8 +14,7 @@ const FilterComponent = ({ title, stat, array, optional, flag = true , cb }) => 
                 id={`showAll-${stat}`}
                 name={stat}
                 value={0}
-                defaultChecked = {title === 'Rating'}
-                onClick={title === 'Rating' ? () => cb(-1) : () => cb('show all')}
+                onChange={title === 'Rating' ? () => cb(-1) : () => cb('show all')}
               />
               <label htmlFor={`showAll-${stat}`}>{optional}</label>
             </div>

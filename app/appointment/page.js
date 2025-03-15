@@ -472,6 +472,10 @@ const Page = () => {
                   setSelectedRating(-1);
                   setSelectedExperience("");
                   setSelectedGender("show all");
+                  // Reset radio button selection
+                  document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+                    radio.checked = radio.value === "0"; // Only check "Show All"
+                  });
                 }}
               >
                 Reset

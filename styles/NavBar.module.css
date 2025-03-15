@@ -66,19 +66,23 @@
 #home{
     width: 56px;
     height: 22px;
-    color: #1C4A2A;
+    /* color: #1C4A2A; */
+    color: #8C8C8C;
 }
 #blog{
     width: 107px;
     height: 22px;
+    color: #8C8C8C;
 }
 #appointments{
     width: 131px;
     height: 22px;
+    color: #8C8C8C;
 }
 #review{
     width: 74px;
     height: 22px;
+    color: #8C8C8C;
 }
 .nav-login{
     display: flex;
