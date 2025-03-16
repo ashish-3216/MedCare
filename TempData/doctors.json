@@ -1,0 +1,149 @@
+{
+    "doctors": [
+      {
+        "id": 1,
+        "name": "Tony Stark",
+        "degree": "MDS",
+        "specialization": "Dentist",
+        "experience": 4,
+        "ratings": 5,
+        "gender": "Male",
+        "description": "Dr. Tony Stark is a skilled Dentist with an MDS degree. He specializes in cosmetic dentistry, restorative treatments, and oral health care. With a keen interest in modern dental technology, he ensures a painless and comfortable experience for his patients. He has successfully treated over 500 patients, focusing on preventive care and advanced dental solutions.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "New York"
+      },
+      {
+        "id": 2,
+        "name": "Bruce Banner",
+        "degree": "MD",
+        "specialization": "General Physician",
+        "experience": 10,
+        "ratings": 4,
+        "gender": "Male",
+        "description": "Dr. Bruce Banner is a highly experienced General Physician with an MD degree. He is known for his comprehensive approach to diagnosing and treating a wide range of illnesses, with a focus on preventive healthcare and patient well-being. He has developed personalized treatment plans for chronic illnesses, including diabetes and hypertension.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Los Angeles"
+      },
+      {
+        "id": 3,
+        "name": "Stephen Strange",
+        "degree": "MCh",
+        "specialization": "Neurosurgeon",
+        "experience": 15,
+        "ratings": 5,
+        "gender": "Male",
+        "description": "Dr. Stephen Strange is a world-renowned Neurosurgeon with an MCh degree. He has performed countless complex brain and spine surgeries, helping patients regain their health through advanced neurological treatments. His expertise lies in microsurgery, tumor removal, and spinal cord reconstruction, ensuring top-tier neurosurgical care.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "London"
+      },
+      {
+        "id": 4,
+        "name": "Peter Parker",
+        "degree": "BDS",
+        "specialization": "Orthodontist",
+        "experience": 3,
+        "ratings": 3,
+        "gender": "Male",
+        "description": "Dr. Peter Parker is a dedicated Orthodontist specializing in correcting dental irregularities and improving smiles. With a BDS degree, he focuses on braces, aligners, and other orthodontic treatments to enhance dental aesthetics. His approach ensures long-term dental alignment and healthy oral structures for his patients.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Chicago"
+      },
+      {
+        "id": 5,
+        "name": "Natasha Romanoff",
+        "degree": "MBBS",
+        "specialization": "Dermatologist",
+        "experience": 7,
+        "ratings": 4,
+        "gender": "Female",
+        "description": "Dr. Natasha Romanoff is a highly skilled Dermatologist with an MBBS degree. She specializes in skin treatments, cosmetic procedures, and dermatological surgery, helping patients achieve healthy and glowing skin. Her expertise includes treating acne, eczema, and performing non-invasive anti-aging procedures.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "San Francisco"
+      },
+      {
+        "id": 6,
+        "name": "Steve Rogers",
+        "degree": "MD",
+        "specialization": "Cardiologist",
+        "experience": 12,
+        "ratings": 5,
+        "gender": "Male",
+        "description": "Dr. Steve Rogers is a leading Cardiologist with an MD degree. He has extensive experience in treating heart diseases, performing cardiac surgeries, and guiding patients toward a heart-healthy lifestyle. His expertise includes heart disease prevention, angioplasty, and post-surgery cardiac care.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Houston"
+      },
+      {
+        "id": 7,
+        "name": "Wanda Maximoff",
+        "degree": "MD",
+        "specialization": "Psychiatrist",
+        "experience": 5,
+        "ratings": 4,
+        "gender": "Female",
+        "description": "Dr. Wanda Maximoff is a compassionate Psychiatrist with an MD degree. She specializes in mental health treatment, stress management, and psychotherapy, helping patients achieve emotional well-being. She focuses on anxiety, depression, and trauma-related disorders with a personalized therapeutic approach.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Miami"
+      },
+      {
+        "id": 8,
+        "name": "Thor Odinson",
+        "degree": "MS",
+        "specialization": "Orthopedic Surgeon",
+        "experience": 8,
+        "ratings": 5,
+        "gender": "Male",
+        "description": "Dr. Thor Odinson is a highly skilled Orthopedic Surgeon with an MS degree. He has expertise in treating fractures, joint replacements, and sports injuries, helping patients regain mobility and strength. He specializes in minimally invasive orthopedic procedures for faster recovery.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Seattle"
+      },
+      {
+        "id": 9,
+        "name": "Loki Laufeyson",
+        "degree": "PhD",
+        "specialization": "Neurologist",
+        "experience": 6,
+        "ratings": 3,
+        "gender": "Male",
+        "description": "Dr. Loki Laufeyson is an expert Neurologist with a PhD in neurological studies. He specializes in treating disorders related to the nervous system, including migraines, epilepsy, and neurodegenerative diseases. His research focuses on innovative therapies for neurological conditions.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Berlin"
+      },
+      {
+        "id": 10,
+        "name": "Clint Barton",
+        "degree": "DO",
+        "specialization": "Ophthalmologist",
+        "experience": 9,
+        "ratings": 4,
+        "gender": "Male",
+        "description": "Dr. Clint Barton is a renowned Ophthalmologist with a DO degree. He is an expert in eye care, cataract surgeries, and vision correction, ensuring his patients receive the best optical treatment. His services include LASIK surgery, glaucoma management, and pediatric eye care.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Tokyo"
+      },
+      {
+        "id": 11,
+        "name": "Carol Danvers",
+        "degree": "MD",
+        "specialization": "Oncologist",
+        "experience": 11,
+        "ratings": 5,
+        "gender": "Female",
+        "description": "Dr. Carol Danvers is a leading Oncologist with an MD degree. She specializes in cancer treatment, chemotherapy, and radiation therapy, offering hope and medical expertise to patients battling cancer. She focuses on precision oncology and innovative cancer treatments.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Paris"
+      },
+      {
+        "id": 12,
+        "name": "Nick Fury",
+        "degree": "MBBS",
+        "specialization": "Pulmonologist",
+        "experience": 20,
+        "ratings": 5,
+        "gender": "Male",
+        "description": "Dr. Nick Fury is an experienced Pulmonologist with an MBBS degree. He specializes in treating respiratory disorders, including asthma, COPD, and lung infections, ensuring optimal lung health for his patients. His research includes lung transplants and advanced respiratory therapies.",
+        "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
+        "location": "Dubai"
+      }
+    ]
+  }
+  

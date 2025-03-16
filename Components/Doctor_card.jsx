@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "@/styles/card.module.css";
-const Doctor_card = ({ image_url, Name, role, experience, rating }) => {
+const Doctor_card = ({ image_url, Name, role, experience, rating , onClick }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick} style={{ cursor: "pointer" }}>
       <div className={styles.details}>
         <div
           className={styles.image_frame}
