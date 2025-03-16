@@ -4,34 +4,39 @@ import styles from "@/styles/appointment.module.css";
 import React, { useState, useEffect } from "react";
 import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
-import doctors from '@/TempData/doctors.json' ;
+import doctors from "@/TempData/doctors.json";
 import { useRouter } from "next/navigation";
-const doctor_data = doctors.doctors ;
+
+const doctor_data = doctors.doctors;
 
 const Page = () => {
-  const [query,setQuery] = useState('') ;
-  const [searchValue,setSearchValue] = useState('') ;
+  const [query, setQuery] = useState(""); // Stores the final search query
+  const [searchValue, setSearchValue] = useState(""); // Stores input value before searching
   const [filteredDoctors, setFilteredDoctors] = useState(doctor_data);
   const [selectedRating, setSelectedRating] = useState(-1);
   const [selectedExperience, setSelectedExperience] = useState("");
   const [selectedGender, setSelectedGender] = useState("show all");
-  const [doctorCount,setDoctorCount] = useState(0) ;
-  const router = useRouter() ;
+  const router = useRouter();
 
-  // Function to apply both filters
+  // Function to filter doctors based on search query, rating, experience, and gender
   const filterDoctors = () => {
     let newDoctors = doctor_data;
 
-    // Apply Rating filter if selected
-    if (selectedRating === -1) {
-      newDoctors = doctor_data;
-    } else if (selectedRating !== -1) {
+    // ✅ Apply search filter based on the name
+    if (query.trim() !== "") {
+      newDoctors = newDoctors.filter((doctor) =>
+        doctor.name.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    // ✅ Apply Rating filter
+    if (selectedRating !== -1) {
       newDoctors = newDoctors.filter(
         (doctor) => doctor.ratings === selectedRating
       );
     }
 
-    // Apply Experience filter if selected
+    // ✅ Apply Experience filter
     if (selectedExperience !== "") {
       newDoctors = newDoctors.filter((doctor) => {
         const years = parseInt(doctor.experience);
@@ -45,21 +50,20 @@ const Page = () => {
       });
     }
 
-    //apply Gender filter if Selected
+    // ✅ Apply Gender filter
     if (selectedGender !== "show all") {
       newDoctors = newDoctors.filter(
         (doctor) => doctor.gender === selectedGender
       );
     }
 
-    setFilteredDoctors(newDoctors);
-    setDoctorCount(newDoctors.length) ;
+    setFilteredDoctors(newDoctors); // ✅ Update filtered doctors after all filters are applied
   };
 
-  // Run filtering whenever rating or experience changes
+  // ✅ Run filtering whenever query, rating, experience, or gender changes
   useEffect(() => {
     filterDoctors();
-  }, [selectedRating, selectedExperience, selectedGender]);
+  }, [query, selectedRating, selectedExperience, selectedGender]);
 
   return (
     <div className={styles.container}>
@@ -77,17 +81,29 @@ const Page = () => {
                 type="text"
                 placeholder="Search doctors"
                 className={styles.search}
-                onChange={(e)=> setSearchValue(e.target.value.toLowerCase())}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value.toLowerCase())} // ✅ Update search input field
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setQuery(searchValue); // ✅ Pressing Enter triggers search automatically
+                  }
+                }}
               />
             </div>
           </div>
-          <button className={styles.searchButton} onClick={()=> setQuery(searchValue)}>Search</button>
+          <button
+            className={styles.searchButton}
+            onClick={() => setQuery(searchValue)} // ✅ Clicking search button also triggers search
+          >
+            Search
+          </button>
         </div>
       </section>
 
       <section className={styles.doctor_container}>
         <section className={styles.title}>
-          <p id={styles.text1}>{doctorCount} doctors available</p>
+          <p id={styles.text1}>{filteredDoctors.length} doctors available</p>
+          {/* ✅ Doctor count updates dynamically */}
           <p id={styles.text2}>
             Book appointments with minimum wait-time & verified doctor details
           </p>
@@ -99,13 +115,19 @@ const Page = () => {
               <p>Filter By:</p>
               <button
                 onClick={() => {
+                  // ✅ Reset all filters and search input
                   setSelectedRating(-1);
                   setSelectedExperience("");
                   setSelectedGender("show all");
-                  // Reset radio button selection
-                  document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-                    radio.checked = radio.value === "0"; // Only check "Show All"
-                  });
+                  setQuery("");
+                  setSearchValue("");
+
+                  // ✅ Reset radio button selections
+                  document
+                    .querySelectorAll('input[type="radio"]')
+                    .forEach((radio) => {
+                      radio.checked = radio.value === "0";
+                    });
                 }}
               >
                 Reset
@@ -136,17 +158,17 @@ const Page = () => {
               cb={(value) => setSelectedGender(value)}
             />
           </aside>
-
+          {/* {!filteredDoctors.length &&<div className={styles.not_found}><h1 > No Doctors Found!</h1></div> } */}
           <div className={styles.doctor_grid}>
             {filteredDoctors.map((doctor, index) => (
-             doctor.name.toLowerCase().includes(query) &&  <Doctor_card
+              <Doctor_card
                 key={doctor.id}
                 image_url={"./Frame.svg"}
                 Name={`${doctor.name}, ${doctor.degree}`}
                 role={doctor.specialization}
                 experience={`${doctor.experience} years`}
                 rating={doctor.ratings}
-                onClick={() => router.push(`/appointment/${doctor.id}`)} 
+                onClick={() => router.push(`/appointment/${doctor.id}`)}
               />
             ))}
           </div>

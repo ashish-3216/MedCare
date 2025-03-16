@@ -1,9 +1,11 @@
+"use client"
 import React from "react";
 import styles from "@/styles/booking.module.css";
 import Footer from "@/Components/Footer";
 import Image from "next/image";
-import Book_Form from "@/Components/Book_Form";
 import Book_appointment from "@/Components/Book_appointment";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 const page = () => {
   return (
     <>

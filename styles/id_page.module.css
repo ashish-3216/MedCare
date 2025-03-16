@@ -1,0 +1,122 @@
+/* Container centered with 70% width */
+.container {
+    margin: 20 auto 0;
+    width: 80%;
+    /* flex-grow: 1; */
+    height: 100%;
+    border-radius: 16px;
+    border: 1px solid #e0e8e0;
+    background-color: #f8fcf9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
+}
+
+/* Hover effect */
+/* .container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+} */
+.details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* Doctor's Image - Styled properly */
+.image_frame {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #0e2515;
+    margin-bottom: 15px;
+}
+
+/* Name & Degree - Aligned properly */
+.title {
+    display: flex;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.degree {
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+}
+
+/* Specialization & Experience placed below Image */
+.exp {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    /* justify-content: center; */
+    text-align: center;
+    /* margin-bottom: 15px; */
+}
+
+.exp div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.exp img {
+    width: 18px;
+    height: 18px;
+}
+
+/* Location */
+.location {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Description */
+.description {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 1.6;
+    max-width: 80%;
+    margin-bottom: 15px;
+}
+
+/* Availability section */
+.availability {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Book Appointment Button */
+.book {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    background-color: #0e2515;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect for button */
+.book:hover {
+    background-color: #092010;
+}
