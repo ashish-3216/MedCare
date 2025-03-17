@@ -1,4 +1,249 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.navbar {
+  width: 100%;
+  height: 102px;
+  border-bottom: 1px solid #e0e8e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+  background-color: #ffffff;
+}
+
+.logo {
+  display: flex;
+  width: 191px;
+  height: 56px;
+  padding: 8px;
+  gap: 8px;
+  align-items: center;
+}
+.leftDiv{
+    display: flex;
+    gap: 48px;
+}
+.Frame {
+  background-color: #1c4a2a;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+
+.trust {
+  position: relative;
+  top: 8.25px;
+  left: 8.25px;
+}
+
+.name {
+  height: 34px;
+  width: 127px;
+  color: #1c4a2a;
+}
+
+.name p {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  width: 727px;
+  height: 56px;
+  gap: 48px;
+}
+
+.links ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  list-style: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  color: #8c8c8c;
+}
+
+#home {
+  width: 56px;
+  height: 22px;
+  color: #8c8c8c;
+}
+
+#blog {
+  width: 107px;
+  height: 22px;
+  color: #8c8c8c;
+}
+
+#appointments {
+  width: 131px;
+  height: 22px;
+  color: #8c8c8c;
+}
+
+#review {
+  width: 74px;
+  height: 22px;
+  color: #8c8c8c;
+}
+
+.nav-login {
+  display: flex;
+  height: 44px;
+  width: 257px;
+  gap: 16px;
+  position: relative;
+  right: 30px;
+}
+
+.login {
+  width: 144px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #e0e8e0;
+  padding: 12px 32px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #0e2515;
+  background-color: #e0e8e0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+.register {
+  width: 131px;
+  height: 44px;
+  border-radius: 8px;
+  padding: 12px 32px;
+  background-color: #1c4a2a;
+  font-size: 16px;
+  font-weight: 500;
+  color: #e0e8e0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login:hover {
+  background-color: #0e2515;
+  color: white;
+  transform: scale(1.05);
+}
+
+.register:hover {
+  background-color: #166534;
+  transform: scale(1.05);
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 100;
+    position: relative;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .menu-img {
+    object-fit: contain;
+  }
+
+.mobile-nav-login {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .logo {
+    gap: 5px;
+  }
+  .nav-login {
+    display: none;
+  }
+  /* Show mobile login/register in the hamburger menu */
+  .mobile-nav-login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .navbar {
+    height: 80px;
+    padding: 20px;
+  }
+
+  .name p {
+    width: fit-content;
+    height: 100%;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+    z-index: 99;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .links ul {
+    flex-direction: column;
+    gap: 20px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .nav-login {
+    position: static;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .login,
+  .register {
+    width: 100px;
+    font-size: 12px;
+    padding: 15px;
+  }
+}
+
+/* ------------------------------------------------------------Previous Code ----------------------------------------------------------*/
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .navbar {
     width: 100%;
@@ -131,9 +376,9 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
+}*/
 
-/* Hover effects */
+/* Hover effects 
 .login:hover {
     background-color: #0e2515;
     color: white;
@@ -144,3 +389,39 @@
     background-color: #166534;
     transform: scale(1.05);
 }
+
+@media screen and (max-width : 1024px) {
+    .logo{
+        gap: 5px;
+    }
+    .navbar{
+        height: 80px;
+        padding: 20px ;
+        align-items: center; 
+    }
+    .name p {
+        width: fit-content;
+        height: 100%;
+        font-size: 16px;
+        text-align: center;
+        padding: 5px;
+    }
+    .nav-links{
+        gap : 30px ;
+        align-items: center;
+    }
+    .links ul{
+        gap : 20px ;
+        font-size: 14px;
+    }*/
+/*.login , .register{
+         position : static; 
+        width: 100px;
+        font-size: 12px;
+        padding: 15px;
+    }
+    .nav-login{
+        position: static;
+        justify-content: center;
+    }
+} */

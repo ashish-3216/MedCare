@@ -6,34 +6,63 @@ import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
 import doctors from "@/TempData/doctors.json";
 import { useRouter } from "next/navigation";
+import Pagination from "@/Components/pagination";
 
-const doctor_data = doctors.doctors;
+const doctor_data = doctors.doctors; // Load doctors from JSON
+const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
-  const [query, setQuery] = useState(""); // Stores the final search query
-  const [searchValue, setSearchValue] = useState(""); // Stores input value before searching
-  const [filteredDoctors, setFilteredDoctors] = useState(doctor_data);
-  const [selectedRating, setSelectedRating] = useState(-1);
-  const [selectedExperience, setSelectedExperience] = useState("");
-  const [selectedGender, setSelectedGender] = useState("show all");
+  const [query, setQuery] = useState(""); // Stores search query (updated on pressing enter/search button)
+  const [searchValue, setSearchValue] = useState(""); // Stores input text in the search field
+  const [filteredDoctors, setFilteredDoctors] = useState(doctor_data); // Holds filtered doctors
+  const [selectedRating, setSelectedRating] = useState(-1); // Selected rating for filtering
+  const [selectedExperience, setSelectedExperience] = useState(""); // Selected experience filter
+  const [selectedGender, setSelectedGender] = useState("show all"); // Selected gender filter
+  const [currentPage, setCurrentPage] = useState(1); // Current pagination page
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
-  // Function to filter doctors based on search query, rating, experience, and gender
-  const filterDoctors = () => {
-    let newDoctors = doctor_data;
 
-    // ✅ Apply search filter based on the name
+   const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Function to close menu when a link is clicked
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+
+
+
+  const totalPages = Math.ceil(filteredDoctors.length / ITEMS_PER_PAGE); // ✅ Correct pagination based on filtered doctors
+
+  // ✅ Slice filtered doctors to show only those for the current page
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const selectedDoctors = filteredDoctors.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  /** 
+   * Filters doctors based on search query, rating, experience, and gender
+   * and updates the displayed doctors.
+   */
+  const filterDoctors = () => {
+    let newDoctors = doctor_data; // Start with all doctors
+
+    // ✅ Apply search filter based on name, specialization, location, and ID
     if (query.trim() !== "") {
-      newDoctors = newDoctors.filter((doctor) =>
-        doctor.name.toLowerCase().includes(query.toLowerCase())
-      );
+      newDoctors = newDoctors.filter((doctor) => {
+        return (
+          doctor.id.toString().includes(query) ||
+          doctor.name.toLowerCase().includes(query) ||
+          doctor.specialization.toLowerCase().includes(query) ||
+          doctor.location.toLowerCase().includes(query)
+        );
+      });
     }
 
     // ✅ Apply Rating filter
     if (selectedRating !== -1) {
-      newDoctors = newDoctors.filter(
-        (doctor) => doctor.ratings === selectedRating
-      );
+      newDoctors = newDoctors.filter((doctor) => doctor.ratings === selectedRating);
     }
 
     // ✅ Apply Experience filter
@@ -52,82 +81,72 @@ const Page = () => {
 
     // ✅ Apply Gender filter
     if (selectedGender !== "show all") {
-      newDoctors = newDoctors.filter(
-        (doctor) => doctor.gender === selectedGender
-      );
+      newDoctors = newDoctors.filter((doctor) => doctor.gender === selectedGender);
     }
 
-    setFilteredDoctors(newDoctors); // ✅ Update filtered doctors after all filters are applied
+    setFilteredDoctors(newDoctors); // Update filtered doctors
+    setCurrentPage(1); // ✅ Reset pagination to first page after filtering
   };
 
-  // ✅ Run filtering whenever query, rating, experience, or gender changes
+  // ✅ Run filtering whenever search query, rating, experience, or gender changes
   useEffect(() => {
     filterDoctors();
   }, [query, selectedRating, selectedExperience, selectedGender]);
 
   return (
     <div className={styles.container}>
+      {/* HERO SECTION */}
       <section className={styles.hero}>
         <p id={styles.text}>Find a doctor at your own ease</p>
         <div className={styles.searchField}>
           <div className={styles.searchBar_container}>
             <div className={styles.searchBar}>
-              <img
-                src="./Vector.svg"
-                style={{ height: "20.02px", width: "20.02px" }}
-                alt="search-icon"
-              />
+              <img src="./Vector.svg" style={{ height: "20.02px", width: "20.02px" }} alt="search-icon" />
               <input
                 type="text"
                 placeholder="Search doctors"
                 className={styles.search}
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value.toLowerCase())} // ✅ Update search input field
+                onChange={(e) => setSearchValue(e.target.value.toLowerCase())} // ✅ Update search input
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    setQuery(searchValue); // ✅ Pressing Enter triggers search automatically
+                    setQuery(searchValue); // ✅ Pressing Enter triggers search
                   }
                 }}
               />
             </div>
           </div>
-          <button
-            className={styles.searchButton}
-            onClick={() => setQuery(searchValue)} // ✅ Clicking search button also triggers search
-          >
+          <button className={styles.searchButton} onClick={() => setQuery(searchValue)}>
             Search
           </button>
         </div>
       </section>
 
+      {/* DOCTOR LISTING */}
       <section className={styles.doctor_container}>
         <section className={styles.title}>
           <p id={styles.text1}>{filteredDoctors.length} doctors available</p>
-          {/* ✅ Doctor count updates dynamically */}
-          <p id={styles.text2}>
-            Book appointments with minimum wait-time & verified doctor details
-          </p>
+          <p id={styles.text2}>Book appointments with minimum wait-time & verified doctor details</p>
         </section>
 
         <section className={styles.main_stats}>
+          {/* FILTER SIDEBAR */}
           <aside className={styles.leftBar}>
             <div className={styles.filterButtons}>
               <p>Filter By:</p>
               <button
                 onClick={() => {
-                  // ✅ Reset all filters and search input
+                  // ✅ Reset all filters and search
                   setSelectedRating(-1);
                   setSelectedExperience("");
                   setSelectedGender("show all");
                   setQuery("");
                   setSearchValue("");
 
-                  // ✅ Reset radio button selections
-                  document
-                    .querySelectorAll('input[type="radio"]')
-                    .forEach((radio) => {
-                      radio.checked = radio.value === "0";
-                    });
+                  // ✅ Reset radio buttons
+                  document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+                    radio.checked = radio.value === "0";
+                  });
                 }}
               >
                 Reset
@@ -154,13 +173,13 @@ const Page = () => {
               stat="Gender"
               array={["Male", "Female"]}
               optional="Show all"
-              flag={false}
               cb={(value) => setSelectedGender(value)}
             />
           </aside>
-          {/* {!filteredDoctors.length &&<div className={styles.not_found}><h1 > No Doctors Found!</h1></div> } */}
+
+          {/* DOCTOR GRID */}
           <div className={styles.doctor_grid}>
-            {filteredDoctors.map((doctor, index) => (
+            {selectedDoctors.map((doctor, index) => (
               <Doctor_card
                 key={doctor.id}
                 image_url={"./Frame.svg"}
@@ -173,7 +192,11 @@ const Page = () => {
             ))}
           </div>
         </section>
+
+        {/* ✅ PAGINATION COMPONENT */}
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
       </section>
+
       <Footer />
     </div>
   );
