@@ -45,6 +45,6 @@
   line-height: 20px; /* Replace with actual line height */
   letter-spacing: 0.05em; /* Replace with actual letter spacing */
 }
-input[type="radio"]:checked {
-  accent-color: black; /* Changes the color of the radio button */
+.radioInput:checked {
+  accent-color: black;
 }

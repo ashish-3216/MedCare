@@ -1,11 +1,4 @@
 /* Prevent horizontal scrolling */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  width: 100%;
-}
 
 /* Main Container */
 .container {
@@ -78,13 +71,13 @@ body {
   font-weight: 500;
 }
 
-input:focus {
+.search:focus {
   outline: none;
   border: none;
   box-shadow: none;
 }
 
-input::placeholder {
+.search::placeholder {
   color: #afafaf;
 }
 

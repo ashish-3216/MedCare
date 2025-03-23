@@ -4,14 +4,14 @@ import styles from "@/styles/appointment.module.css";
 import React, { useState, useEffect } from "react";
 import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
-import doctors from "@/TempData/doctors.json";
 import { useRouter } from "next/navigation";
 import Pagination from "@/Components/pagination";
 
-const doctor_data = doctors.doctors; // Load doctors from JSON
 const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
+  const [doctor_data,setDoctors] = useState([]);
+
   const [query, setQuery] = useState(""); // Stores search query (updated on pressing enter/search button)
   const [searchValue, setSearchValue] = useState(""); // Stores input text in the search field
   const [filteredDoctors, setFilteredDoctors] = useState(doctor_data); // Holds filtered doctors
@@ -22,6 +22,22 @@ const Page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
+
+  //fetching doctors 
+  useEffect(  () => {
+    const fetchDoctors = async ()=>{
+      try{
+        const res = await fetch('http://localhost:5000/api/v1/doctor') ;
+        const result = await res.json() ;
+        setDoctors(result.data);
+        return ;
+      }catch(err){  
+        console.log(err);
+      }
+    }
+    fetchDoctors();
+  }, []);
+  
 
    const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -53,16 +69,16 @@ const Page = () => {
       newDoctors = newDoctors.filter((doctor) => {
         return (
           doctor.id.toString().includes(query) ||
-          doctor.name.toLowerCase().includes(query) ||
+          doctor.doc_name.toLowerCase().includes(query) ||
           doctor.specialization.toLowerCase().includes(query) ||
-          doctor.location.toLowerCase().includes(query)
+          doctor.doc_location.toLowerCase().includes(query)
         );
       });
     }
 
     // ✅ Apply Rating filter
     if (selectedRating !== -1) {
-      newDoctors = newDoctors.filter((doctor) => doctor.ratings === selectedRating);
+      newDoctors = newDoctors.filter((doctor) => doctor.rating === selectedRating);
     }
 
     // ✅ Apply Experience filter
@@ -83,7 +99,6 @@ const Page = () => {
     if (selectedGender !== "show all") {
       newDoctors = newDoctors.filter((doctor) => doctor.gender === selectedGender);
     }
-
     setFilteredDoctors(newDoctors); // Update filtered doctors
     setCurrentPage(1); // ✅ Reset pagination to first page after filtering
   };
@@ -91,7 +106,7 @@ const Page = () => {
   // ✅ Run filtering whenever search query, rating, experience, or gender changes
   useEffect(() => {
     filterDoctors();
-  }, [query, selectedRating, selectedExperience, selectedGender]);
+  }, [doctor_data,query, selectedRating, selectedExperience, selectedGender]);
 
   return (
     <div className={styles.container}>
@@ -183,10 +198,10 @@ const Page = () => {
               <Doctor_card
                 key={doctor.id}
                 image_url={"./Frame.svg"}
-                Name={`${doctor.name}, ${doctor.degree}`}
+                Name={`${doctor.doc_name}, ${doctor.doc_degree}`}
                 role={doctor.specialization}
                 experience={`${doctor.experience} years`}
-                rating={doctor.ratings}
+                rating={doctor.rating}
                 onClick={() => router.push(`/appointment/${doctor.id}`)}
               />
             ))}

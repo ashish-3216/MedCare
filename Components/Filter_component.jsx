@@ -11,6 +11,7 @@ const FilterComponent = ({ title, stat, array, optional, flag = true , cb }) => 
             <div key="showAll" className={styles.radioGroup}>
               <input
                 type="radio"
+                className={styles.radioInput}
                 id={`showAll-${stat}`}
                 name={stat}
                 value={0}
@@ -25,6 +26,7 @@ const FilterComponent = ({ title, stat, array, optional, flag = true , cb }) => 
             return (
               <div key={id} className={styles.radioGroup}>
                 <input
+                  className={styles.radioInput}
                   type="radio"
                   id={id}
                   name={stat}

@@ -8,8 +8,8 @@
           "experience": 4,
           "ratings": 5,
           "gender": "Male",
+          "availability": ["9 AM - 12 PM", "1 PM - 5 PM"],
           "description": "Dr. Tony Stark is a skilled Dentist with an MDS degree. He specializes in cosmetic dentistry, restorative treatments, and oral health care. With a keen interest in modern dental technology, he ensures a painless and comfortable experience for his patients. He has successfully treated over 500 patients, focusing on preventive care and advanced dental solutions.",
-
           "location": "New York, Stark Dental Care"
       },
       {

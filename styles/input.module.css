@@ -34,11 +34,9 @@
     overflow: visible;
     border: none;
 }
-input:focus {
+.inputField:focus {
     width: 100%;
-    outline: none; 
-    border: none;   
-    box-shadow: none;
+    outline: none;
 }
 .input_icon{
     width: 18x ;
