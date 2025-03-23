@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/book_appointment.module.css";
 import Book_Form from "./Book_Form";
-const Book_appointment = () => {
+const Book_appointment = ({data}) => {
   const [toggle, setToggle] = useState(true);
   const location = () => setToggle(!toggle);
   return (
@@ -51,7 +51,7 @@ const Book_appointment = () => {
             className={toggle ? styles.disabledDropdown : ""}
           >
             <option id={styles.live_location}>
-              MedicareHeart Institute, Okhla Road
+             {data.doc_location}
             </option>
           </select>
         </div>
