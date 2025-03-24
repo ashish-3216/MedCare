@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import styles from "@/styles/book_appointment.module.css";
 import Book_Form from "./Book_Form";
-const Book_appointment = ({data}) => {
+import Calendar from "./calender";
+const Book_appointment = ({ data }) => {
   const [toggle, setToggle] = useState(true);
   const location = () => setToggle(!toggle);
   return (
@@ -50,12 +51,11 @@ const Book_appointment = ({data}) => {
             disabled={toggle} // Disable when Video Consult is selected
             className={toggle ? styles.disabledDropdown : ""}
           >
-            <option id={styles.live_location}>
-             {data.doc_location}
-            </option>
+            <option id={styles.live_location}>{data.doc_location}</option>
           </select>
         </div>
       </div>
+      <Calendar className={styles.Calendar}/>
       <Book_Form
         day_time={"Morning"}
         remaining_slots={"8"}

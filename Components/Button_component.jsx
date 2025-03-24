@@ -1,16 +1,16 @@
-"use client"
+"use client";
 import React from "react";
 import styles from "@/styles/button.module.css";
 
-const Button_component = ({ text, color }) => {
-
+const Button_component = ({ text, color, onClick }) => {
   return (
     <div
       className={styles.container}
       role="button"
-      onClick={() => console.log("hello jee")}
       tabIndex={0}
-      style={{ backgroundColor: color }} 
+      style={{ backgroundColor: color }}
+      onClick={onClick}
+      onKeyDown={(e) => e.key === "Enter" && onClick?.()} // Supports Enter key
     >
       <p className={styles.text}>{text}</p>
     </div>

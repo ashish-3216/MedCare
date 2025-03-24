@@ -105,3 +105,6 @@
   opacity: 0.5; /* Makes it look disabled */
   background-color: #e0e0e0; /* Light grey */
 }
+.Calender{
+  justify-self: center;
+}

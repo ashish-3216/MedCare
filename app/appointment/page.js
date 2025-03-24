@@ -106,7 +106,7 @@ const Page = () => {
   // ✅ Run filtering whenever search query, rating, experience, or gender changes
   useEffect(() => {
     filterDoctors();
-  }, [doctor_data,query, selectedRating, selectedExperience, selectedGender]);
+  }, [doctor_data, query, selectedRating, selectedExperience, selectedGender]);
 
   return (
     <div className={styles.container}>

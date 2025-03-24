@@ -8,7 +8,8 @@ const InputComponent = ({
   input_type,
   img_url,
   placeholder_name,
-  isPasswordFlag = false 
+  isPasswordFlag = false ,
+  setValue
 }) => {
   const [toggleState,setToggle] = useState(false) ;
   return (
@@ -23,6 +24,7 @@ const InputComponent = ({
                     className={styles.input_field}
                     type={toggleState ? "text" : input_type}
                     placeholder={placeholder_name}
+                    onChange={(e)=> setValue(e.target.value)}
                 />
         </div>
         {isPasswordFlag && <img src="Eye.svg" alt="toggle password" role="button" id={styles.toggle} onClick={()=>{
