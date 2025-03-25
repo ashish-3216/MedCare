@@ -46,7 +46,7 @@ const page = () => {
             alt="background"
             className={styles.back_img}
           />
-          <Book_appointment data = {doctor_data} className={styles.form} />
+          <Book_appointment data = {doctor_data} className={styles.form}  />
         </div>
       </div>
       <Footer />

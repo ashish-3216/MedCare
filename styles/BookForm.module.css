@@ -67,8 +67,7 @@
   box-shadow: 0px 4px 12px rgba(244, 215, 208, 0.5); /* Subtle shadow */
 }
 
-/* Optional: Active effect for when the slot is clicked */
-.slot:active {
-  transform: scale(0.95);
-  background-color: rgba(244, 215, 208, 0.9);
+.slot.selected {
+  background-color: #1c4a2a !important; /* Dark green */
+  color: white !important;
 }

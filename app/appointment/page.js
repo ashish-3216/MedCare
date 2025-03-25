@@ -10,8 +10,7 @@ import Pagination from "@/Components/pagination";
 const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
-  const [doctor_data,setDoctors] = useState([]);
-
+  const [doctor_data, setDoctors] = useState([]);
   const [query, setQuery] = useState(""); // Stores search query (updated on pressing enter/search button)
   const [searchValue, setSearchValue] = useState(""); // Stores input text in the search field
   const [filteredDoctors, setFilteredDoctors] = useState(doctor_data); // Holds filtered doctors
@@ -20,26 +19,45 @@ const Page = () => {
   const [selectedGender, setSelectedGender] = useState("show all"); // Selected gender filter
   const [currentPage, setCurrentPage] = useState(1); // Current pagination page
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false) ;
   const router = useRouter();
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/v1/auth/appointment", {
+          credentials: "include",
+        });
 
-  //fetching doctors 
-  useEffect(  () => {
-    const fetchDoctors = async ()=>{
-      try{
-        const res = await fetch('http://localhost:5000/api/v1/doctor') ;
-        const result = await res.json() ;
+        if (res.ok) {
+          setIsAuthenticated(true);
+        } else {
+          router.push("/login"); // Redirect if not authenticated
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        router.push("/login");
+      }
+    };
+    checkAuth();
+  }, [router]);
+
+  //fetching doctors
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/v1/doctor");
+        const result = await res.json();
         setDoctors(result.data);
-        return ;
-      }catch(err){  
+        return;
+      } catch (err) {
         console.log(err);
       }
-    }
+    };
     fetchDoctors();
   }, []);
-  
 
-   const toggleMenu = () => {
+  const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -48,16 +66,16 @@ const Page = () => {
     setIsMenuOpen(false);
   };
 
-
-
-
   const totalPages = Math.ceil(filteredDoctors.length / ITEMS_PER_PAGE); // ✅ Correct pagination based on filtered doctors
 
   // ✅ Slice filtered doctors to show only those for the current page
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const selectedDoctors = filteredDoctors.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const selectedDoctors = filteredDoctors.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
 
-  /** 
+  /**
    * Filters doctors based on search query, rating, experience, and gender
    * and updates the displayed doctors.
    */
@@ -78,7 +96,9 @@ const Page = () => {
 
     // ✅ Apply Rating filter
     if (selectedRating !== -1) {
-      newDoctors = newDoctors.filter((doctor) => doctor.rating === selectedRating);
+      newDoctors = newDoctors.filter(
+        (doctor) => doctor.rating === selectedRating
+      );
     }
 
     // ✅ Apply Experience filter
@@ -97,7 +117,9 @@ const Page = () => {
 
     // ✅ Apply Gender filter
     if (selectedGender !== "show all") {
-      newDoctors = newDoctors.filter((doctor) => doctor.gender === selectedGender);
+      newDoctors = newDoctors.filter(
+        (doctor) => doctor.gender === selectedGender
+      );
     }
     setFilteredDoctors(newDoctors); // Update filtered doctors
     setCurrentPage(1); // ✅ Reset pagination to first page after filtering
@@ -116,7 +138,11 @@ const Page = () => {
         <div className={styles.searchField}>
           <div className={styles.searchBar_container}>
             <div className={styles.searchBar}>
-              <img src="./Vector.svg" style={{ height: "20.02px", width: "20.02px" }} alt="search-icon" />
+              <img
+                src="./Vector.svg"
+                style={{ height: "20.02px", width: "20.02px" }}
+                alt="search-icon"
+              />
               <input
                 type="text"
                 placeholder="Search doctors"
@@ -131,7 +157,10 @@ const Page = () => {
               />
             </div>
           </div>
-          <button className={styles.searchButton} onClick={() => setQuery(searchValue)}>
+          <button
+            className={styles.searchButton}
+            onClick={() => setQuery(searchValue)}
+          >
             Search
           </button>
         </div>
@@ -141,7 +170,9 @@ const Page = () => {
       <section className={styles.doctor_container}>
         <section className={styles.title}>
           <p id={styles.text1}>{filteredDoctors.length} doctors available</p>
-          <p id={styles.text2}>Book appointments with minimum wait-time & verified doctor details</p>
+          <p id={styles.text2}>
+            Book appointments with minimum wait-time & verified doctor details
+          </p>
         </section>
 
         <section className={styles.main_stats}>
@@ -159,9 +190,11 @@ const Page = () => {
                   setSearchValue("");
 
                   // ✅ Reset radio buttons
-                  document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-                    radio.checked = radio.value === "0";
-                  });
+                  document
+                    .querySelectorAll('input[type="radio"]')
+                    .forEach((radio) => {
+                      radio.checked = radio.value === "0";
+                    });
                 }}
               >
                 Reset
@@ -209,7 +242,11 @@ const Page = () => {
         </section>
 
         {/* ✅ PAGINATION COMPONENT */}
-        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </section>
 
       <Footer />

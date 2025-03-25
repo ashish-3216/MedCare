@@ -178,7 +178,7 @@ const NavBar = () => {
               <Link href="/" onClick={closeMenu}>
                 <li id={styles.home}>Home</li>
               </Link>
-              <Link href="/appointment" onClick={closeMenu}>
+              <Link href={isAuthenticated ? '/appointment' : '/login'} onClick={closeMenu}>
                 <li id={styles.appointments}>Appointments</li>
               </Link>
               <li id={styles.blog} onClick={closeMenu}>
