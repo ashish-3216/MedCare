@@ -16,6 +16,7 @@ const LoginComponent = () => {
       const res = await fetch(`http://localhost:5000/api/v1/auth/login`,{
         method : "POST" ,
         headers : {"content-type" : "application/json"},
+        credentials: "include" ,
         body : JSON.stringify({email,password})
       });
       const result = await res.json() ;
@@ -28,6 +29,10 @@ const LoginComponent = () => {
       console.log(err);
     }
   }
+  const handleReset = () => {
+    setEmail('');
+    setPassword('');
+  };
   return (
     <div className={styles.login}>
       <Image src={'./login.svg'} layout="fill" alt="login" height={0} width={0} className={styles.login_image}/>
@@ -58,7 +63,7 @@ const LoginComponent = () => {
             setValue={setPassword}
           />
           <Button_component text="Login" color="#1C4A2A" onClick={()=>handleLogin()}/>
-          <Button_component text="Reset" color="#C6B09A" />
+          <Button_component text="Reset" color="#C6B09A" onClick={handleReset} />
           <a href="#"><p className={styles.forgot}>Forgot Password ?</p></a>
         </section>
       </div>
