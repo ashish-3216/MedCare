@@ -10,9 +10,7 @@ const Book_appointment = ({ data }) => {
   const [selectedSlot, setSelectedSlot] = useState(null);
 
   const location = () => setToggle((prev) => !prev);
-  useEffect(() => {
-    console.log("Updated States:", { date, toggle, selectedSlot });
-  }, [date, toggle, selectedSlot]);
+
   return (
     <div className={styles.container}>
       <div className={styles.schedule_appointment}>
@@ -85,7 +83,7 @@ const Book_appointment = ({ data }) => {
         setSelectedSlot={setSelectedSlot}
       />
 
-      <button className={styles.Next_button}>Next</button>
+      <button className={styles.Next_button} >Next</button>
     </div>
   );
 };
