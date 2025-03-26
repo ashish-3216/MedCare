@@ -71,3 +71,9 @@
   background-color: #1c4a2a !important; /* Dark green */
   color: white !important;
 }
+.slot.disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  pointer-events: none;
+}

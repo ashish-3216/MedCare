@@ -5,7 +5,8 @@ import styles from "@/styles/BookForm.module.css";
 const Book_Form = ({
   day_time,
   slots_array = [],
-  remaining_slots = slots_array.length,
+  notAvailable = [],
+  remaining_slots ,
   img_url,
   selectedSlot,
   setSelectedSlot,
@@ -30,7 +31,7 @@ const Book_Form = ({
       <hr style={{ border: "1px solid rgba(112, 112, 112, 0.15)" }} />
 
       <div className={styles.bottom_container}>
-        <div className={styles.slot_container}>
+        {/* <div className={styles.slot_container}>
           {slots_array.map((_time, i) => (
             <div
               key={i}
@@ -43,6 +44,23 @@ const Book_Form = ({
               {_time}
             </div>
           ))}
+        </div> */}
+        <div className={styles.slot_container}>
+          {slots_array.map((_time, i) => {
+            const isDisabled = notAvailable.includes(_time);
+            return (
+              <div
+                key={i}
+                role="button"
+                onClick={() => handleSlotClick(_time)}
+                className={`${styles.slot} 
+                  ${selectedSlot === _time ? styles.selected : ""} 
+                  ${isDisabled ? styles.disabled : ""}`}
+              >
+                {_time}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
