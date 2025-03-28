@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/book_appointment.module.css";
 import Book_Form from "./Book_Form";
 import Calendar from "./calender";
-
+import { useRouter } from "next/navigation";
 const Book_appointment = ({ data, id }) => {
   const [date, setDate] = useState("");
   const [toggle, setToggle] = useState(true);
@@ -13,7 +13,7 @@ const Book_appointment = ({ data, id }) => {
   const [eveningRemaining, setEveningRemaining] = useState(8); // Assuming 8 slots for evening
 
   const location = () => setToggle((prev) => !prev);
-
+  const router = useRouter() ;
   const formatDate = (date) => {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -53,6 +53,8 @@ const Book_appointment = ({ data, id }) => {
       const result = await response.json();
       console.log("Appointment booked successfully:", result);
       alert(result.message);
+      router.replace('/appointment');
+      router
     } catch (err) {
       console.error("Error booking appointment:", err.message);
       alert("Error booking appointment. Please try again.");
@@ -62,6 +64,7 @@ const Book_appointment = ({ data, id }) => {
     const today = new Date();
     setDate(formatDate(today));
   }, []);
+  
   useEffect(() => {
     const fetchAvailableSlots = async () => {
       try {

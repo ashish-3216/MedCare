@@ -8,7 +8,7 @@ export const montserrat = Montserrat({
   display:'swap',
   fallback: ['Arial', 'sans-serif'],
 });
-
+import ProtectedRoute from "@/Components/ProtectedRoute";
 
 export default function RootLayout({ children }) {
   return (

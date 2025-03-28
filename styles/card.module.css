@@ -99,10 +99,12 @@
   height: 100%;
   font-size: 13px;
   font-weight: 500;
-  white-space: nowrap;
-  line-height: 180%;
+  overflow-wrap: break-word; /* Allows long words to break */
+  word-wrap: break-word; /* For compatibility */
+  /* line-height: 180%; */
   text-align: center;
 }
+
 
 /* Experience section styling */
 .experience {

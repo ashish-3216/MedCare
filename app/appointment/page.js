@@ -22,25 +22,25 @@ const Page = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false) ;
   const router = useRouter();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/v1/auth/appointment", {
-          credentials: "include",
-        });
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       const res = await fetch("http://localhost:5000/api/v1/auth/appointment", {
+  //         credentials: "include",
+  //       });
 
-        if (res.ok) {
-          setIsAuthenticated(true);
-        } else {
-          router.push("/login"); // Redirect if not authenticated
-        }
-      } catch (error) {
-        console.error("Auth check failed:", error);
-        router.push("/login");
-      }
-    };
-    checkAuth();
-  }, [router]);
+  //       if (res.ok) {
+  //         setIsAuthenticated(true);
+  //       } else {
+  //         router.push("/login"); // Redirect if not authenticated
+  //       }
+  //     } catch (error) {
+  //       console.error("Auth check failed:", error);
+  //       router.push("/login");
+  //     }
+  //   };
+  //   checkAuth();
+  // }, [router]);
 
   //fetching doctors
   useEffect(() => {

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import styles from "../styles/LoginPage.module.css";
 import Image from "next/image";
@@ -7,37 +7,57 @@ import Button_component from "./Button_component";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 const LoginComponent = () => {
-  const [email,setEmail] = useState(null) ;
-  const [password,setPassword] = useState(null) ;
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const router = useRouter();
-  const handleLogin = async ()=>{
-    try{
-      if(!email || !password) prompt('incorrect credentials');
-      const res = await fetch(`http://localhost:5000/api/v1/auth/login`,{
-        method : "POST" ,
-        headers : {"content-type" : "application/json"},
-        credentials: "include" ,
-        body : JSON.stringify({email,password})
-      });
-      const result = await res.json() ;
-      if(res.ok){
-        router.push('/appointment');
-      } else{
-        prompt('incorrect crendtials');
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        return alert("Please provide both email and password.");
       }
-    }catch(err){
-      console.log(err);
+      const res = await fetch(`http://localhost:5000/api/v1/auth/login`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert("Login successful");
+        router.push("/appointment"); // Redirect to the appointments page
+      } else {
+        alert(result.message || "Incorrect credentials");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("An error occurred. Please try again.");
     }
-  }
+  };
+  const handleGoogleLogin = () => {
+    window.location.href = `http://localhost:5000/api/v1/auth/google`;
+  };
   const handleReset = () => {
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
   return (
     <div className={styles.login}>
-      <Image src={'./login.svg'} layout="fill" alt="login" height={0} width={0} className={styles.login_image}/>
+      <Image
+        src={"./login.svg"}
+        layout="fill"
+        alt="login"
+        height={0}
+        width={0}
+        className={styles.login_image}
+      />
       <div className={styles.fields}>
-        <h6>Login</h6>
+        <div className={styles["login-type"]}>
+          <h6>Login</h6>
+          <button type="button" onClick={handleGoogleLogin}className={styles["login-with-google-btn"]}>
+            Sign in with Google
+          </button>
+        </div>
         <p id={styles.signup_route}>
           Are you a new member?
           <span>
@@ -59,12 +79,22 @@ const LoginComponent = () => {
             input_type="password"
             img_url="/Lock.svg"
             placeholder_name="Enter Your Password"
-            isPasswordFlag = {true} 
+            isPasswordFlag={true}
             setValue={setPassword}
           />
-          <Button_component text="Login" color="#1C4A2A" onClick={()=>handleLogin()}/>
-          <Button_component text="Reset" color="#C6B09A" onClick={handleReset} />
-          <a href="#"><p className={styles.forgot}>Forgot Password ?</p></a>
+          <Button_component
+            text="Login"
+            color="#1C4A2A"
+            onClick={() => handleLogin()}
+          />
+          <Button_component
+            text="Reset"
+            color="#C6B09A"
+            onClick={handleReset}
+          />
+          <a href="#">
+            <p className={styles.forgot}>Forgot Password ?</p>
+          </a>
         </section>
       </div>
     </div>
