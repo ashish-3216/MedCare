@@ -12,7 +12,7 @@ const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
- 
+
   const { fetchUser } = useLogin();
 
   const handleLogin = async () => {
@@ -20,8 +20,10 @@ const LoginComponent = () => {
       if (!email || !password) {
         return alert("Please provide both email and password.");
       }
-      if((!email.includes('@gmail.com')) || (!email.includes('@tothenew.com'))){
-        return alert('Currently we will allowed only gmail and tothenew domain for signup/login');
+      if (!(email.endsWith("@gmail.com") || email.endsWith("@tothenew.com"))) {
+        return toast.info(
+          "Currently, we only allow Gmail and To The New domain for signup/login"
+        );
       }
       const res = await fetch(`http://localhost:5000/api/v1/auth/login`, {
         method: "POST",
@@ -33,9 +35,9 @@ const LoginComponent = () => {
       const result = await res.json();
 
       if (res.ok) {
-        await fetchUser() ;
+        await fetchUser();
         toast.success("Login successful");
-        router.push("/appointment"); 
+        router.push("/appointment");
       } else {
         toast.error(result.message || "Incorrect credentials");
       }
@@ -48,13 +50,11 @@ const LoginComponent = () => {
     window.location.href = `http://localhost:5000/api/v1/auth/google`;
   };
 
-  
   const handleReset = () => {
     setEmail("");
     setPassword("");
-    toast.success('reset done')
+    toast.success("reset done");
   };
-
 
   return (
     <div className={styles.login}>

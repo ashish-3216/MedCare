@@ -44,8 +44,8 @@ const LoginComponent = () => {
       password: password,
     };
 
-    if((!email.includes('@gmail.com')) || (!email.includes('@tothenew.com'))){
-      return toast.info('Currently we will allowed only gmail and tothenew domain for signup/login');
+    if (!(email.endsWith('@gmail.com') || email.endsWith('@tothenew.com'))) {
+      return toast.info('Currently, we only allow Gmail and To The New domain for signup/login');
     }
     
     const response = await fetch("http://localhost:5000/api/v1/register", {
