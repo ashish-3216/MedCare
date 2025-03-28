@@ -6,14 +6,21 @@ import Input_component from "./Input_component";
 import Button_component from "./Button_component";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useLogin } from "@/context/LoggedInContext";
 const LoginComponent = () => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+ 
+  const { fetchUser } = useLogin();
+
   const handleLogin = async () => {
     try {
       if (!email || !password) {
         return alert("Please provide both email and password.");
+      }
+      if((!email.includes('@gmail.com')) || (!email.includes('@tothenew.com'))){
+        return alert('Currently we will allowed only gmail and tothenew domain for signup/login');
       }
       const res = await fetch(`http://localhost:5000/api/v1/auth/login`, {
         method: "POST",
@@ -23,9 +30,11 @@ const LoginComponent = () => {
       });
 
       const result = await res.json();
+
       if (res.ok) {
+        await fetchUser() ;
         alert("Login successful");
-        router.push("/appointment"); // Redirect to the appointments page
+        router.push("/appointment"); 
       } else {
         alert(result.message || "Incorrect credentials");
       }
@@ -37,10 +46,14 @@ const LoginComponent = () => {
   const handleGoogleLogin = () => {
     window.location.href = `http://localhost:5000/api/v1/auth/google`;
   };
+
+  
   const handleReset = () => {
     setEmail("");
     setPassword("");
   };
+
+
   return (
     <div className={styles.login}>
       <Image
@@ -54,7 +67,11 @@ const LoginComponent = () => {
       <div className={styles.fields}>
         <div className={styles["login-type"]}>
           <h6>Login</h6>
-          <button type="button" onClick={handleGoogleLogin}className={styles["login-with-google-btn"]}>
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className={styles["login-with-google-btn"]}
+          >
             Sign in with Google
           </button>
         </div>
@@ -71,6 +88,7 @@ const LoginComponent = () => {
             input_type="email"
             img_url="/At sign.png"
             placeholder_name="example@123.com"
+            value={email}
             setValue={setEmail}
           />
           <Input_component
@@ -80,17 +98,20 @@ const LoginComponent = () => {
             img_url="/Lock.svg"
             placeholder_name="Enter Your Password"
             isPasswordFlag={true}
+            value={password}
             setValue={setPassword}
           />
           <Button_component
             text="Login"
             color="#1C4A2A"
             onClick={() => handleLogin()}
+            disabled={true}
           />
           <Button_component
             text="Reset"
             color="#C6B09A"
             onClick={handleReset}
+            disabled={false}
           />
           <a href="#">
             <p className={styles.forgot}>Forgot Password ?</p>

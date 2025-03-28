@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { useState,useEffect } from "react";
 import Image from "next/image";
 import InputComponent from "@/Components/Input_component";
 import Button_component from "@/Components/Button_component";
@@ -7,20 +7,47 @@ import styles from "@/styles/signup.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { useLogin } from "@/context/LoggedInContext";
+import "react-toastify/dist/ReactToastify.css";
 const LoginComponent = () => {
   const [userName, setUsername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const { user } = useLogin();
+  const router = useRouter();
 
-  const router = useRouter() ;
-  const postData = async ()=> {
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    }
+  }, [user]);
+
+  if (user) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        Already Logged in, redirecting back to home page!
+      </div>
+    );
+  }
+
+  const postData = async () => {
     const data = {
       username: userName,
-      email : email ,
+      email: email,
       password: password,
     };
 
+    if((!email.includes('@gmail.com')) || (!email.includes('@tothenew.com'))){
+      return alert('Currently we will allowed only gmail and tothenew domain for signup/login');
+    }
+    
     const response = await fetch("http://localhost:5000/api/v1/register", {
       method: "POST",
       headers: {
@@ -28,21 +55,23 @@ const LoginComponent = () => {
       },
       body: JSON.stringify(data),
     });
-    
+
     const result = await response.json();
-    
+
     if (result.success) {
-      toast.success("User registered successfully!");
       setTimeout(() => {
         window.location.href = "http://localhost:3000/login";
-      }, 1500); 
-      // console.log("Success:", result);
-      // router.push('/login');
-      // window.location.href = result.redirectUrl; // Perform client-side redirect
+      }, 1500);
     } else {
       toast.error("Error:", result.message);
     }
-  }
+  };
+
+  const handleReset = () => {
+    setemail("");
+    setpassword("");
+    setUsername("");
+  };
 
   return (
     <div className={styles.signup}>
@@ -69,6 +98,7 @@ const LoginComponent = () => {
             input_type="text"
             img_url="./name.svg"
             placeholder_name="Enter Your Name"
+            value={userName}
             setValue={setUsername}
           />
           <InputComponent
@@ -77,6 +107,7 @@ const LoginComponent = () => {
             input_type="email"
             img_url="./At sign.png"
             placeholder_name="example@123.com"
+            value={email}
             setValue={setemail}
           />
           <InputComponent
@@ -86,10 +117,16 @@ const LoginComponent = () => {
             img_url="./Lock.svg"
             placeholder_name="Enter Your Password"
             isPasswordFlag={true}
+            value={password}
             setValue={setpassword}
           />
-          <Button_component text="Login" color="#1C4A2A" onClick={() => postData()} />
-          <Button_component text="Reset" color="#C6B09A" />
+          <Button_component
+            text="Signup"
+            color="#1C4A2A"
+            onClick={() => postData()}
+            disabled={true}
+          />
+          <Button_component text="Reset" onClick={handleReset} color="#C6B09A" disabled={false} />
         </section>
       </div>
     </div>

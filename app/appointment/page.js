@@ -6,10 +6,12 @@ import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
 import { useRouter } from "next/navigation";
 import Pagination from "@/Components/pagination";
-
+import Link from "next/link";
+// import { useLogin } from "@/context/LoggedInContext";
 const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
+  // const { user } = useLogin();
   const [doctor_data, setDoctors] = useState([]);
   const [query, setQuery] = useState(""); // Stores search query (updated on pressing enter/search button)
   const [searchValue, setSearchValue] = useState(""); // Stores input text in the search field
@@ -19,30 +21,14 @@ const Page = () => {
   const [selectedGender, setSelectedGender] = useState("show all"); // Selected gender filter
   const [currentPage, setCurrentPage] = useState(1); // Current pagination page
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false) ;
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:5000/api/v1/auth/appointment", {
-  //         credentials: "include",
-  //       });
+  // if (!user) {
+  //   return (
+  //     <h1>Unathourized to Access this page. Please Login.</h1>
+  //   );
+  // }
 
-  //       if (res.ok) {
-  //         setIsAuthenticated(true);
-  //       } else {
-  //         router.push("/login"); // Redirect if not authenticated
-  //       }
-  //     } catch (error) {
-  //       console.error("Auth check failed:", error);
-  //       router.push("/login");
-  //     }
-  //   };
-  //   checkAuth();
-  // }, [router]);
-
-  //fetching doctors
   useEffect(() => {
     const fetchDoctors = async () => {
       try {

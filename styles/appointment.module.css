@@ -98,7 +98,7 @@
 /* Doctor Grid */
 .doctor_grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: calc(100% - 88px);
   flex-wrap: wrap ;
   gap: 15px;
