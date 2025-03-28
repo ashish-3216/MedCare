@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetchUser();
-  }, [user]);
+  }, []);
   if (!user) {
     return(
         <>

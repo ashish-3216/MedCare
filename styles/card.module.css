@@ -33,12 +33,13 @@
   align-items: center;
 }
 
-/* Image frame styling */
 .image_frame {
   width: 100px;
-  height: 100px;
-  background-position: top;
-  border-radius: 50px;
+ height: 100px;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: contain; /*Or cover depending on preference*/
+ border-radius: 50px; 
 }
 
 /* Title section */

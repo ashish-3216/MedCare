@@ -216,7 +216,7 @@ const Page = () => {
             {selectedDoctors.map((doctor, index) => (
               <Doctor_card
                 key={doctor.id}
-                image_url={"./Frame.svg"}
+                image_url={doctor.img_url}
                 Name={`${doctor.doc_name}, ${doctor.doc_degree}`}
                 role={doctor.specialization}
                 experience={`${doctor.experience} years`}
