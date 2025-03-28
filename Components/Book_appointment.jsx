@@ -4,6 +4,7 @@ import styles from "@/styles/book_appointment.module.css";
 import Book_Form from "./Book_Form";
 import Calendar from "./calender";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 const Book_appointment = ({ data, id }) => {
   const [date, setDate] = useState("");
   const [toggle, setToggle] = useState(true);
@@ -51,13 +52,12 @@ const Book_appointment = ({ data, id }) => {
       }
 
       const result = await response.json();
-      console.log("Appointment booked successfully:", result);
-      alert(result.message);
+      toast.success(result.message);
       router.replace('/appointment');
       router
     } catch (err) {
       console.error("Error booking appointment:", err.message);
-      alert("Error booking appointment. Please try again.");
+      toast.error("Error booking appointment. Please try again.");
     }
   };
   useEffect(() => {
@@ -126,7 +126,7 @@ const Book_appointment = ({ data, id }) => {
         }
       } catch (err) {
         console.error("Error fetching available slots:", err.message);
-        alert("Error fetching available slots. Please try again.");
+        toast.error("Error fetching available slots. Please try again.");
       }
     };
 

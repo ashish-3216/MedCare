@@ -45,7 +45,7 @@ const LoginComponent = () => {
     };
 
     if((!email.includes('@gmail.com')) || (!email.includes('@tothenew.com'))){
-      return alert('Currently we will allowed only gmail and tothenew domain for signup/login');
+      return toast.info('Currently we will allowed only gmail and tothenew domain for signup/login');
     }
     
     const response = await fetch("http://localhost:5000/api/v1/register", {
@@ -62,6 +62,7 @@ const LoginComponent = () => {
       setTimeout(() => {
         window.location.href = "http://localhost:3000/login";
       }, 1500);
+      toast.success("signup successful")
     } else {
       toast.error("Error:", result.message);
     }
@@ -71,6 +72,7 @@ const LoginComponent = () => {
     setemail("");
     setpassword("");
     setUsername("");
+    toast.success('reset done')
   };
 
   return (

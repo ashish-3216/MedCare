@@ -6,6 +6,7 @@ import Input_component from "./Input_component";
 import Button_component from "./Button_component";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import { useLogin } from "@/context/LoggedInContext";
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -33,14 +34,14 @@ const LoginComponent = () => {
 
       if (res.ok) {
         await fetchUser() ;
-        alert("Login successful");
+        toast.success("Login successful");
         router.push("/appointment"); 
       } else {
-        alert(result.message || "Incorrect credentials");
+        toast.error(result.message || "Incorrect credentials");
       }
     } catch (err) {
       console.error("Login error:", err);
-      alert("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     }
   };
   const handleGoogleLogin = () => {
@@ -51,6 +52,7 @@ const LoginComponent = () => {
   const handleReset = () => {
     setEmail("");
     setPassword("");
+    toast.success('reset done')
   };
 
 
