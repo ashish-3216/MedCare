@@ -1,7 +1,10 @@
+"use client"
 import Image from "next/image";
 import styles from "../styles/landingpage.module.css";
 import Link from "next/link";
+import { useLogin } from "@/context/LoggedInContext";
 export default function LandingPage() {
+  const {user} = useLogin();
   return (
     <div className={styles.container}>
       {/* left */}

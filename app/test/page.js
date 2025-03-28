@@ -17,6 +17,8 @@ export default function Home() {
     // <Filter_component title='Gender' stat={'Gender'} array={['Male','Female']} optional={'Show all'} flag={false}/> */}
     // </>
     // <Footer/>
-    <Calendar/>
+    // <Calendar/>
+    // <DoctorReview/>
+    <></>
   );
 }

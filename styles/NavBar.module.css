@@ -8,7 +8,9 @@
   padding: 30px 40px;
   background-color: #ffffff;
 }
-
+#activeLink {
+  color: #0e2515; /* Change to your desired color */
+}
 .logo {
   display: flex;
   width: 191px;

@@ -17,7 +17,6 @@
 //     fetchUser();
 // }, []);
 
-
 //   // const handleLogout = async () => {
 //   //   try {
 //   //     const res = await fetch("http://localhost:5000/api/v1/auth/logout", {
@@ -131,7 +130,7 @@ import styles from "../styles/NavBar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLogin } from "@/context/LoggedInContext";
-
+import { usePathname } from "next/navigation";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -139,10 +138,9 @@ const NavBar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const { user, logout, fetchUser } = useLogin();
-
+  const pathname = usePathname();
   useEffect(() => {
     fetchUser();
-    console.log(user);
   }, []);
 
   const handleLogout = async () => {
@@ -185,10 +183,21 @@ const NavBar = () => {
           <div className={styles.links}>
             <ul>
               <Link href="/" onClick={closeMenu}>
-                <li id={styles.home}>Home</li>
+                <li
+                  id={pathname === "/" ? styles.activeLink : styles.home}
+                >
+                  Home
+                </li>
               </Link>
+
               <Link href="/appointment" onClick={closeMenu}>
-                <li id={styles.appointments}>Appointments</li>
+                <li
+                  id={
+                    pathname === "/appointment" ? styles.activeLink : styles.appointments
+                  }
+                >
+                  Appointments
+                </li>
               </Link>
               <li id={styles.blog} onClick={closeMenu}>
                 Health Blog
