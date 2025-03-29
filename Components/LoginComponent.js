@@ -29,9 +29,12 @@ const LoginComponent = () => {
         method: "POST",
         headers: { "content-type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ 
+          email, 
+          password, 
+          AdminFlag: false 
+        }),
       });
-
       const result = await res.json();
 
       if (res.ok) {
