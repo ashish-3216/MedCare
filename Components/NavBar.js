@@ -125,12 +125,14 @@
 
 "use client";
 import { useState, useEffect } from "react";
+import { PiUserCircleDuotone } from "react-icons/pi";
 import Image from "next/image";
 import styles from "../styles/NavBar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLogin } from "@/context/LoggedInContext";
 import { usePathname } from "next/navigation";
+import { UserCircle, ChevronDown } from "lucide-react";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -183,9 +185,7 @@ const NavBar = () => {
           <div className={styles.links}>
             <ul>
               <Link href="/" onClick={closeMenu}>
-                <li
-                  id={pathname === "/" ? styles.activeLink : styles.home}
-                >
+                <li id={pathname === "/" ? styles.activeLink : styles.home}>
                   Home
                 </li>
               </Link>
@@ -193,7 +193,9 @@ const NavBar = () => {
               <Link href="/appointment" onClick={closeMenu}>
                 <li
                   id={
-                    pathname === "/appointment" ? styles.activeLink : styles.appointments
+                    pathname === "/appointment"
+                      ? styles.activeLink
+                      : styles.appointments
                   }
                 >
                   Appointments
@@ -209,21 +211,39 @@ const NavBar = () => {
           </div>
 
           <div className={styles["mobile-nav-login"]}>
-            <Link href="/login" onClick={closeMenu}>
+          {user ? (
+          <>
+            <Link href={"/profile"}>
+              <button className={styles.register} >Profile</button>
+            </Link>
+            <button className={styles.login} onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login">
               <button className={styles.login}>Login</button>
             </Link>
-            <Link href="/signup" onClick={closeMenu}>
+            <Link href="/signup">
               <button className={styles.register}>Register</button>
             </Link>
+          </>
+        )}
           </div>
         </div>
       </div>
 
       <div className={styles["nav-login"]}>
         {user ? (
-          <button className={styles.login} onClick={handleLogout}>
-            Logout
-          </button>
+          <>
+            <Link href={"/profile"}>
+              <PiUserCircleDuotone className={styles.profile} size={65} />
+            </Link>
+            <button className={styles.login} onClick={handleLogout}>
+              Logout
+            </button>
+          </>
         ) : (
           <>
             <Link href="/login">

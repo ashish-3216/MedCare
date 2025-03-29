@@ -1,0 +1,91 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #e0e8e0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileSection {
+  align-self: center;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  width: fit-content;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.text {
+  font-size: 1rem;
+  color: #4b5563;
+  margin: 0.5rem 0;
+}
+
+.tableContainer {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* .table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table tbody td {
+  padding: 1rem;
+  color: #4b5563;
+} */
+
+.appointmetnsSection {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f3f4f6; 
+    font-weight: 600;
+  }
+  
+  .table tr:hover {
+    background-color: #e5e7eb; 
+  }
+  
+

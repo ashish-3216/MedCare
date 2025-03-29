@@ -116,6 +116,16 @@ export default function ProfilePage() {
         <p className={styles.location}>
           <strong>Location:</strong> {doctor_data.doc_location}
         </p>
+        {doctor_data.treatable_diseases?.length > 0 && (
+          <div className={styles.treatableDiseases}>
+            <h4>Diseases Treated:</h4>
+            <ul>
+              {doctor_data.treatable_diseases.map((disease, index) => (
+                <li key={index}>{disease}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <p className={styles.availability}>
           <strong>Available:</strong> {availability.join(", ")}
         </p>

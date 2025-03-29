@@ -33,6 +33,24 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+.treatableDiseases {
+  margin-top: 20px;
+}
+
+.treatableDiseases h4 {
+  color: #1C4A2A;
+  margin-bottom: 10px;
+}
+
+.treatableDiseases ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.treatableDiseases li {
+  font-size: 16px;
+  color: #333;
+}
 
 
 /* Hover effect */
