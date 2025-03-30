@@ -201,9 +201,15 @@ const NavBar = () => {
                   Appointments
                 </li>
               </Link>
-              <li id={styles.blog} onClick={closeMenu}>
+              <Link href="/emergency">
+              <li id={
+                    pathname === "/emergency"
+                      ? styles.activeLink
+                      : styles.blog
+                  } onClick={closeMenu}>
                 Health Blog
               </li>
+              </Link>
               <li id={styles.review} onClick={closeMenu}>
                 Reviews
               </li>

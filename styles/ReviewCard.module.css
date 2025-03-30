@@ -1,0 +1,37 @@
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    margin-bottom: 16px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .username {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #2d3748;
+  }
+  
+  .doctor {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+  }
+  
+  .rating {
+    color: #f59e0b;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .review {
+    color: #4b5563;
+    line-height: 1.5;
+  }
+  

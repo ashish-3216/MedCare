@@ -3,7 +3,9 @@ import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import styles from "@/styles/id_page.module.css";
+import ReviewForm from '@/Components/doctor-review';
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 export default function ProfilePage() {
   const availability = ["9 AM - 12 PM", "1 PM - 5 PM"];
   const [doctor_data, setDoctorData] = useState([]);
@@ -16,11 +18,7 @@ export default function ProfilePage() {
       const response = await fetch("http://localhost:5000/api/v1/review/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          doctor_id: doc_id,
-          review_text: review,
-          rating,
-        }),
+        body: JSON.stringify(review),
       });
 
       const result = await response.json();
@@ -28,11 +26,8 @@ export default function ProfilePage() {
       if (!response.ok) {
         throw new Error(result.message || "Failed to submit review.");
       }
-      setSuccess(true);
-      setRating(0);
-      setFeedback("");
     } catch (err) {
-      setError(err.message);
+      toast.error(err.message);
       console.error("Error submitting review:", err);
     }
   };
@@ -138,14 +133,14 @@ export default function ProfilePage() {
       >
         Book Appointment
       </button>
-      {/* <button
+      <button
         className={styles.review}
         onClick={() => setShowReview((prev) => !prev)}
       >
         {showReview ? "Close Review Form" : "Write a Review"}
       </button>
 
-      {showReview && <DoctorReview onSubmit={handleReviewSubmit} />} */}
+      {showReview && <ReviewForm onSubmit={handleReviewSubmit} />}
     </div>
   );
 }

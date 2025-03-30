@@ -282,6 +282,7 @@ useEffect(() => {
                 role={doctor.specialization}
                 experience={`${doctor.experience} years`}
                 rating={doctor.rating}
+                id={doctor.id}
                 onClick={() => router.push(`/appointment/${doctor.id}`)}
               />
             ))}

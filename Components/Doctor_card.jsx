@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "@/styles/card.module.css";
-const Doctor_card = ({ image_url, Name, role, experience, rating, location , onClick }) => {
+import Link from "next/link";
+const Doctor_card = ({ image_url, Name, role, experience, rating, location , onClick , id }) => {
+
+  const handleBookClick = (e) => {
+    e.stopPropagation(); 
+  };
+
+
   return (
     <div className={styles.container} onClick={onClick} style={{ cursor: "pointer" }}>
       <div className={styles.details}>
@@ -35,7 +42,11 @@ const Doctor_card = ({ image_url, Name, role, experience, rating, location , onC
           </div>
         </div>
       </div>
-      <button className={styles.book}>Book Appointment</button>
+      <Link href={`/appointment/${id}/booking`} passHref>
+          <button onClick={handleBookClick} className={styles.book}>
+            Book Appointment
+          </button>
+        </Link>
     </div>
   );
 };
