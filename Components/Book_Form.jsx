@@ -31,20 +31,7 @@ const Book_Form = ({
       <hr style={{ border: "1px solid rgba(112, 112, 112, 0.15)" }} />
 
       <div className={styles.bottom_container}>
-        {/* <div className={styles.slot_container}>
-          {slots_array.map((_time, i) => (
-            <div
-              key={i}
-              role="button"
-              onClick={() => handleSlotClick(_time)}
-              className={`${styles.slot} ${
-                selectedSlot === _time ? styles.selected : ""
-              }`}
-            >
-              {_time}
-            </div>
-          ))}
-        </div> */}
+
         <div className={styles.slot_container}>
           {slots_array.map((_time, i) => {
             const isDisabled = notAvailable.includes(_time);

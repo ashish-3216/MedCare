@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import styles from '@/styles/doctor-review.module.css';
 import { useParams } from 'next/navigation';
-import { LoginContext } from '@/context/LoggedInContext';
+import { useLogin } from '@/context/LoggedInContext';
 const ReviewForm = ({onSubmit}) => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
-  const {user} = LoginContext();
+  const {user} =  useLogin();
   const doc_id = useParams();
   const handleStarClick = (index) => {
     setRating(index + 1);
@@ -36,7 +36,7 @@ const ReviewForm = ({onSubmit}) => {
         value={review}
         onChange={(e) => setReview(e.target.value)}
       />
-      <button className={styles.button} type="submit">
+      <button className={styles.button} onClick={handleSubmit} type="submit">
         Submit Review
       </button>
     </form>

@@ -2,7 +2,6 @@
 .container {
   margin: 20 auto 0;
   width: 80%;
-  /* flex-grow: 1; */
   height: 100%;
   border-radius: 16px;
   border: 1px solid #e0e8e0;
@@ -53,11 +52,6 @@
 }
 
 
-/* Hover effect */
-/* .container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-} */
 .details {
   display: flex;
   flex-direction: column;
@@ -95,9 +89,7 @@
   display: flex;
   flex-direction: row;
   gap: 30px;
-  /* justify-content: center; */
   text-align: center;
-  /* margin-bottom: 15px; */
 }
 
 .exp div {

@@ -6,8 +6,7 @@ import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
 import { useRouter } from "next/navigation";
 import Pagination from "@/Components/pagination";
-import Link from "next/link";
-// import { useLogin } from "@/context/LoggedInContext";
+
 const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
@@ -23,11 +22,6 @@ const Page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
-  // if (!user) {
-  //   return (
-  //     <h1>Unathourized to Access this page. Please Login.</h1>
-  //   );
-  // }
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -60,62 +54,6 @@ const Page = () => {
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
-
-  // /**
-  //  * Filters doctors based on search query, rating, experience, and gender
-  //  * and updates the displayed doctors.
-  //  */
-  // const filterDoctors = () => {
-  //   let newDoctors = doctor_data; // Start with all doctors
-
-  //   // ✅ Apply search filter based on name, specialization, location, and ID
-  //   if (query.trim() !== "") {
-  //     newDoctors = newDoctors.filter((doctor) => {
-  //       return (
-  //         doctor.id.toString().includes(query) ||
-  //         doctor.doc_name.toLowerCase().includes(query) ||
-  //         doctor.specialization.toLowerCase().includes(query) ||
-  //         doctor.doc_location.toLowerCase().includes(query)
-  //       );
-  //     });
-  //   }
-
-  //   // ✅ Apply Rating filter
-  //   if (selectedRating !== -1) {
-  //     newDoctors = newDoctors.filter(
-  //       (doctor) => doctor.rating === selectedRating
-  //     );
-  //   }
-
-  //   // ✅ Apply Experience filter
-  //   if (selectedExperience !== "") {
-  //     newDoctors = newDoctors.filter((doctor) => {
-  //       const years = parseInt(doctor.experience);
-  //       if (selectedExperience === "15+") return years >= 15;
-  //       if (selectedExperience === "10-15") return years >= 10 && years < 15;
-  //       if (selectedExperience === "5-10") return years >= 5 && years < 10;
-  //       if (selectedExperience === "3-5") return years >= 3 && years < 5;
-  //       if (selectedExperience === "1-3") return years >= 1 && years < 3;
-  //       if (selectedExperience === "0-1") return years < 1;
-  //       return false;
-  //     });
-  //   }
-
-  //   // ✅ Apply Gender filter
-  //   if (selectedGender !== "show all") {
-  //     newDoctors = newDoctors.filter(
-  //       (doctor) => doctor.gender === selectedGender
-  //     );
-  //   }
-  //   setFilteredDoctors(newDoctors); // Update filtered doctors
-  //   setCurrentPage(1); // ✅ Reset pagination to first page after filtering
-  // };
-
-  // // ✅ Run filtering whenever search query, rating, experience, or gender changes
-  // useEffect(() => {
-  //   filterDoctors();
-  // }, [doctor_data, query, selectedRating, selectedExperience, selectedGender]);
-
 
  /**
  * Filters doctors based on search query, rating, experience, gender, disease,

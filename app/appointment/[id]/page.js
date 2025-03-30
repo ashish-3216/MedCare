@@ -1,7 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import styles from "@/styles/id_page.module.css";
 import ReviewForm from '@/Components/doctor-review';
 import { useRouter } from "next/navigation";
@@ -46,11 +45,6 @@ export default function ProfilePage() {
     }
   }, []);
 
-  // Find doctor by ID
-  // const doctor_data = doctorData.doctors.find(
-  //   (doctor) => String(doctor.id) === id
-  // );
-
   if (!doctor_data) {
     return <h1>Doctor not found</h1>;
   }
@@ -63,7 +57,7 @@ export default function ProfilePage() {
           <div
             className={styles.image_frame}
             style={{
-              backgroundImage: `url(${doctor_data.img_url})`, // Change if you have actual image URLs
+              backgroundImage: `url(${doctor_data.img_url})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}

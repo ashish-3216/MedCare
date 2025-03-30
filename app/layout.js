@@ -1,7 +1,6 @@
 import "./globals.css";
 import NavBar from "@/Components/NavBar";
 import { Montserrat } from "next/font/google";
-import Footer from "@/Components/Footer";
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,11 +11,14 @@ export const montserrat = Montserrat({
   display: "swap",
   fallback: ["Arial", "sans-serif"],
 });
-import ProtectedRoute from "@/Components/ProtectedRoute";
 import { LoginProvider } from "@/context/LoggedInContext";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/medcare_logo.png" /> 
+        <title>MedCare</title>
+      </head>
       <body className={montserrat.className}>
         <LoginProvider>
           <NavBar />

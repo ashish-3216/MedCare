@@ -56,7 +56,7 @@ export const LoginProvider = ({ children }) => {
     }, []);
 
     if (isLoading) {
-        return null; // Or a loading spinner
+        return null; 
     }
 
     return (
