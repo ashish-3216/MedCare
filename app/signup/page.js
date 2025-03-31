@@ -37,9 +37,17 @@ const LoginComponent = () => {
     );
   }
 
+  const capitalizeName = (name) => {
+    return name
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+  
   const postData = async () => {
     const data = {
-      username: userName,
+      username: capitalizeName(userName),
       email: email,
       password: password,
     };

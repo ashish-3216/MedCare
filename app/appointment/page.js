@@ -103,9 +103,6 @@ const filterDoctors = () => {
     );
   }
   
-  // ✅ Sort by rating in descending order - new feature
-  newDoctors.sort((a, b) => b.rating - a.rating);
-  
   setFilteredDoctors(newDoctors); // Update filtered doctors
   setCurrentPage(1); // ✅ Reset pagination to first page after filtering
 };

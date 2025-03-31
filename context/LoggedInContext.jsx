@@ -36,7 +36,7 @@ export const LoginProvider = ({ children }) => {
       } finally {
           setIsLoading(false);
       }
-  };  
+    };  
 
     const logout = async () => {
         try {
@@ -71,3 +71,4 @@ export const useLogin = () => {
     if (!context) throw new Error("useLogin must be used within a LoginProvider");
     return context;
 };
+
