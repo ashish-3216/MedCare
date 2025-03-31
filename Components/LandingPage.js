@@ -19,7 +19,7 @@ export default function LandingPage() {
           </p>
         </div>
         {/* button  */}
-        <Link href='/login'>
+        <Link href={user ? '/appointment' : '/login'}>
           <button className={styles.startbtn}>Get Started</button>
         </Link>
       </div>

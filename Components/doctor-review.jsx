@@ -16,6 +16,9 @@ const ReviewForm = ({onSubmit}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ doctor_id, rating , review , name});
+    setRating(0);
+    setReview('');
+    
   };
   return (
     <form onSubmit={handleSubmit} className={styles.reviewForm}>

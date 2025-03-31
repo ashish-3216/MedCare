@@ -23,8 +23,11 @@ export default function ProfilePage() {
       const result = await response.json();
 
       if (!response.ok) {
+        toast.error('cant submit review right now');
         throw new Error(result.message || "Failed to submit review.");
       }
+      setShowReview(false);
+      toast.success('review submitted successfully');
     } catch (err) {
       toast.error(err.message);
       console.error("Error submitting review:", err);
