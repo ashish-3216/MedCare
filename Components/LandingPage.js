@@ -7,9 +7,10 @@ import { useEffect } from "react";
 export default function LandingPage() {
   const {user,fetchUser} = useLogin();
 
-  
+
   useEffect(()=>{
     fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 

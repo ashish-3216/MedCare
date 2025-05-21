@@ -63,6 +63,7 @@ const Book_appointment = ({ data, id }) => {
   useEffect(() => {
     const today = new Date();
     setDate(formatDate(today));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   useEffect(() => {

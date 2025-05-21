@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!user) {
     return(

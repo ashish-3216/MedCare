@@ -35,6 +35,7 @@ const Page = () => {
       }
     };
     fetchDoctors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleMenu = () => {

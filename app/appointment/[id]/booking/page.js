@@ -6,7 +6,7 @@ import Image from "next/image";
 import Book_appointment from "@/Components/Book_appointment";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-const page = () => {
+const Page = () => {
   const [doctor_data, setDoctorData] = useState(null);
   const { id } = useParams();
 
@@ -54,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

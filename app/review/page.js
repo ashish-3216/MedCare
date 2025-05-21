@@ -29,6 +29,7 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Calculate total pages based on the fetched reviews

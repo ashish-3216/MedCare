@@ -46,6 +46,7 @@ export default function ProfilePage() {
     } catch (err) {
       console.log(err);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!doctor_data) {
