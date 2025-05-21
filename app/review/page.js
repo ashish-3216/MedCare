@@ -13,7 +13,7 @@ const ReviewsPage = () => {
 
   const fetchReviews = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/review`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/review`);
       const data = await res.json();
 
       if (res.ok) {

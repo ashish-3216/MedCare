@@ -12,7 +12,7 @@ const page = () => {
 
   const fetchDoctor = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/doctor/${id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/doctor/${id}`);
       const data = await res.json();
       setDoctorData(data.data);
       return;

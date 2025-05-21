@@ -3,8 +3,16 @@ import Image from "next/image";
 import styles from "../styles/landingpage.module.css";
 import Link from "next/link";
 import { useLogin } from "@/context/LoggedInContext";
+import { useEffect } from "react";
 export default function LandingPage() {
-  const {user} = useLogin();
+  const {user,fetchUser} = useLogin();
+
+  
+  useEffect(()=>{
+    fetchUser();
+  },[])
+
+
   return (
     <div className={styles.container}>
       {/* left */}

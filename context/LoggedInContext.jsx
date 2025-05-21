@@ -2,9 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useState, useEffect } from "react";
-
+import dotenv from "dotenv" ;
 export const LoginContext = createContext();
 
+dotenv.config() ;
 export const LoginProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +14,7 @@ export const LoginProvider = ({ children }) => {
 
     const fetchUser = async () => {
       try {
-          const res = await fetch(`http://localhost:5000/api/v1/auth/status`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/status`, {
               credentials: "include",
               cache: "no-cache",
               headers: {
@@ -21,7 +22,6 @@ export const LoginProvider = ({ children }) => {
                   Pragma: "no-cache",
               },
           });
-  
           if (res.ok) {
               const userData = await res.json();
               const { id, username, email_id } = userData.user;
@@ -40,7 +40,7 @@ export const LoginProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await fetch("http://localhost:5000/api/v1/auth/logout", {
+            await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`, {
                 method: "POST",
                 credentials: "include",
             });

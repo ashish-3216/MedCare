@@ -26,7 +26,7 @@ const Page = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/v1/doctor");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/doctor`);
         const result = await res.json();
         setDoctors(result.data);
         return;

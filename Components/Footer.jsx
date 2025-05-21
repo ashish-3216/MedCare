@@ -6,7 +6,7 @@ const Footer = () => {
       <p className={styles.company}>© EmScripts 2024. All Right Reserved.</p>
       <div className={styles.social}>
         <img src='/Phone.svg'></img>
-        <img src='/Whatsapp.svg'></img>
+        <img src='/WhatsApp.svg'></img>
       </div>
     </div>
   )

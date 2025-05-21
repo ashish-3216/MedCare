@@ -19,7 +19,7 @@ const Doctor_card = ({ image_url, Name, role, experience, rating, location , onC
           <p className={styles.name}>{Name}</p>
           <div className={styles.exp}>
             <div className={styles.special}>
-              <p><img src="./stethoscope.svg"></img>{role}</p>
+              <p><img src="./Stethoscope.svg"></img>{role}</p>
             </div>
             <div className={styles.experience}>
               

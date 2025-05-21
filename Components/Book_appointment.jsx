@@ -30,7 +30,7 @@ const Book_appointment = ({ data, id }) => {
       console.log(id);
 
       const response = await fetch(
-        "http://localhost:5000/api/v1/bookappointment",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/bookappointment`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ const Book_appointment = ({ data, id }) => {
     const fetchAvailableSlots = async () => {
       try {
         const result = await fetch(
-          "http://localhost:5000/api/v1/bookappointment/details",
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/bookappointment/details`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

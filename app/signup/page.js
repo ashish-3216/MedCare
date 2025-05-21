@@ -56,7 +56,7 @@ const LoginComponent = () => {
       return toast.info('Currently, we only allow Gmail and To The New domain for signup/login');
     }
     
-    const response = await fetch("http://localhost:5000/api/v1/register", {
+    const response = await fetch( `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const LoginComponent = () => {
 
     if (result.success) {
       setTimeout(() => {
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`;
       }, 1500);
       toast.success("signup successful")
     } else {

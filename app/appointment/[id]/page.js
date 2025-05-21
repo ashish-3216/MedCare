@@ -14,7 +14,7 @@ export default function ProfilePage() {
 
   const handleReviewSubmit = async (review) => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/review/add", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/review/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review),
@@ -37,7 +37,7 @@ export default function ProfilePage() {
   useEffect(() => {
     try {
       const fetchDoctor = async () => {
-        const res = await fetch(`http://localhost:5000/api/v1/doctor/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/doctor/${id}`);
         const doc = await res.json();
         setDoctorData(doc.data);
         return;
