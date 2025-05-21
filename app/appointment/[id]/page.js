@@ -77,7 +77,7 @@ export default function ProfilePage() {
         </div>
         <div className={styles.exp}>
           <div className={styles.special}>
-            <img src="/stethoscope.svg" alt="Specialization Icon" />
+            <img src="/Stethoscope.svg" alt="Specialization Icon" />
             <p>{doctor_data.specialization}</p>
           </div>
           <div className={styles.experience}>

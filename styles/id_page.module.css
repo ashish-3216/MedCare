@@ -1,6 +1,6 @@
 /* Container centered with 70% width */
 .container {
-  margin: 20 auto 0;
+  margin: 20px auto 0;
   width: 80%;
   height: 100%;
   border-radius: 16px;

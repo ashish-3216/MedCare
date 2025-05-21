@@ -26,16 +26,16 @@
   align-items: center;
 }
 .top_text p {
-  width: 263.7821350097656;
-  height: 25.409664154052734;
+  width: 263.7821350097656px;
+  height: 25.409664154052734px;
   font-weight: 400;
   font-size: 22px;
   line-height: 100%;
   letter-spacing: 0%;
 }
 .top button {
-  width: 215.9143524169922;
-  height: 41.4083366394043;
+  width: 215.9143524169922px;
+  height: 41.4083366394043px;
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
@@ -47,14 +47,14 @@
 }
 .tab {
   width: 100%;
-  height: 38.5850715637207;
+  height: 38.5850715637207px;
   border: 1px solid rgba(244, 215, 208, 1);
   display: flex;
 }
 .video_consult,
 .hospital_visit {
   width: 50%;
-  height: 38.585044860839844;
+  height: 38.585044860839844px;
   border: 1px solid rgba(244, 215, 208, 1);
   background: rgba(255, 255, 255, 1);
   cursor: pointer;
@@ -68,11 +68,11 @@
 }
 .drop_down {
   width: 100%;
-  height: 38.585044860839844;
+  height: 38.585044860839844px;
 }
 #list {
   width: 100%;
-  height: 38.585044860839844;
+  height: 38.585044860839844px;
   padding: 10px;
   border: 1px solid rgba(211, 212, 219, 1);
 }
@@ -90,7 +90,7 @@
 }
 .Next_button {
   width: 100%;
-  height: 41.4083366394043;
+  height: 41.4083366394043px;
   background: rgba(28, 74, 42, 1);
   color: white;
   font-weight: 700;
