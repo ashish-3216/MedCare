@@ -68,7 +68,7 @@ const LoginComponent = () => {
 
     if (result.success) {
       setTimeout(() => {
-        window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`;
+        router.push('/login');
       }, 1500);
       toast.success("signup successful")
     } else {
