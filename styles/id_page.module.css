@@ -18,7 +18,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.rating{
+  display: flex;
+}
 .review {
   background-color: #4caf50; /* Green */
   height: 20%;

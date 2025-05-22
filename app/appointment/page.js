@@ -6,7 +6,8 @@ import Footer from "@/Components/Footer";
 import Filter_component from "@/Components/Filter_component";
 import { useRouter } from "next/navigation";
 import Pagination from "@/Components/pagination";
-
+import { Progress } from "@/components/ui/progress";
+import LoadingBar from "@/Components/LoadingBar";
 const ITEMS_PER_PAGE = 6; // Number of doctor cards per page
 
 const Page = () => {
@@ -19,6 +20,7 @@ const Page = () => {
   const [selectedExperience, setSelectedExperience] = useState(""); // Selected experience filter
   const [selectedGender, setSelectedGender] = useState("show all"); // Selected gender filter
   const [currentPage, setCurrentPage] = useState(1); // Current pagination page
+  const [Loading, isLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -30,6 +32,7 @@ const Page = () => {
         );
         const result = await res.json();
         setDoctors(result.data);
+        isLoading(false);
         return;
       } catch (err) {
         console.log(err);
@@ -116,6 +119,16 @@ const Page = () => {
   useEffect(() => {
     filterDoctors();
   }, [doctor_data, query, selectedRating, selectedExperience, selectedGender]);
+
+  if(Loading)
+    return (
+        <div className="flex justify-center items-center min-h-[70vh]">
+          <div className="w-1/2 max-w-md">
+            <LoadingBar value={33}/>
+          </div>
+      </div>
+
+    );
 
   return (
     <div className={styles.container}>
@@ -223,7 +236,7 @@ const Page = () => {
                 experience={`${doctor.experience} years`}
                 rating={doctor.rating}
                 id={doctor.id}
-                onClick={() => router.push(`/appointment/${doctor.id}`)}
+                onClick={() => {isLoading(true); router.push(`/appointment/${doctor.id}`);}}
               />
             ))}
           </div>

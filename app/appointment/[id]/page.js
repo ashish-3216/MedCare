@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/id_page.module.css";
 import ReviewForm from '@/Components/doctor-review';
 import { useRouter } from "next/navigation";
+import LoadingBar from '@/Components/LoadingBar'
 import { toast } from "react-toastify";
 export default function ProfilePage() {
   const availability = ["9 AM - 12 PM", "1 PM - 5 PM"];
@@ -11,6 +12,7 @@ export default function ProfilePage() {
   const [showReview, setShowReview] = useState(false);
   const { id } = useParams();
   const router = useRouter();
+  const [Loading,isLoading] = useState(true);
 
   const handleReviewSubmit = async (review) => {
     try {
@@ -21,13 +23,14 @@ export default function ProfilePage() {
       });
 
       const result = await response.json();
-
+      isLoading(true);
       if (!response.ok) {
         toast.error('cant submit review right now');
         throw new Error(result.message || "Failed to submit review.");
       }
       setShowReview(false);
       toast.success('review submitted successfully');
+      isLoading(false);
     } catch (err) {
       toast.error(err.message);
       console.error("Error submitting review:", err);
@@ -40,18 +43,26 @@ export default function ProfilePage() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/doctor/${id}`);
         const doc = await res.json();
         setDoctorData(doc.data);
+        isLoading(false);
         return;
       };
       fetchDoctor();
+      
     } catch (err) {
       console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!doctor_data) {
-    return <h1>Doctor not found</h1>;
-  }
+
+  if(Loading)
+    return (
+        <div className="flex justify-center items-center min-h-[70vh]">
+          <div className="w-1/2 max-w-md">
+            <LoadingBar value={33}/>
+          </div>
+      </div>
+    );
 
   return (
     <div className={styles.container}>

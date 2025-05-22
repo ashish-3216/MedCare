@@ -14,7 +14,7 @@ export const montserrat = Montserrat({
 import { LoginProvider } from "@/context/LoggedInContext";
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/medcare_logo.png" /> 
         <title>MedCare</title>

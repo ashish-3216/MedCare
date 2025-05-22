@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import ReviewCard from "@/Components/ReviewCard";
 import styles from "@/styles/Reviews.module.css";
 import Pagination from "@/Components/pagination";
+import LoadingBar from '@/Components/LoadingBar';
 
 const ITEMS_PER_PAGE = 8;
 
 const ReviewsPage = () => {
+
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [Loading,setLoading] = useState(true) ;
 
   const fetchReviews = async () => {
     try {
@@ -19,6 +22,7 @@ const ReviewsPage = () => {
       if (res.ok) {
         console.log(data);
         setReviews(data.data);
+        setLoading(false);
       } else {
         setReviews([]);
       }
@@ -40,6 +44,16 @@ const ReviewsPage = () => {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+
+      if (Loading)
+        return (
+          <div className="flex justify-center items-center min-h-[70vh]">
+            <div className="w-1/2 max-w-md">
+              <LoadingBar value={33} />
+            </div>
+          </div>
+        );
 
   return (
     <div className={styles.container}>

@@ -8,11 +8,14 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useLogin } from "@/context/LoggedInContext";
+import LoadingBar from "@/Components/LoadingBar";
+
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
+  const [Loading, isLoading] = useState(false);
+  
   const { fetchUser } = useLogin();
 
   const handleLogin = async () => {
@@ -39,13 +42,16 @@ const LoginComponent = () => {
 
       if (res.ok) {
         await fetchUser();
+        isLoading(false);
         toast.success("Login successful");
         router.push("/appointment");
       } else {
+        isLoading(false);
         toast.error(result.message || "Incorrect credentials");
       }
     } catch (err) {
       console.error("Login error:", err);
+      isLoading(false);
       toast.error("An error occurred. Please try again.");
     }
   };
@@ -58,6 +64,16 @@ const LoginComponent = () => {
     setPassword("");
     toast.success("reset done");
   };
+
+    if(Loading)
+      return (
+          <div className="flex justify-center items-center min-h-[70vh]">
+            <div className="w-1/2 max-w-md">
+              <LoadingBar value={33}/>
+            </div>
+        </div>
+  
+      );
 
   return (
     <div className={styles.login}>
@@ -109,7 +125,7 @@ const LoginComponent = () => {
           <Button_component
             text="Login"
             color="#1C4A2A"
-            onClick={() => handleLogin()}
+            onClick={() => {handleLogin(); isLoading(true);}}
             disabled={true}
           />
           <Button_component

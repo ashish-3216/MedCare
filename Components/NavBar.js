@@ -7,6 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLogin } from "@/context/LoggedInContext";
 import { usePathname } from "next/navigation";
+import LoadingBar from "@/Components/LoadingBar";
+
+// import ChangeThemeButton from '@/Components/ChangeThemeButton';
 import { UserCircle, ChevronDown } from "lucide-react";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +17,10 @@ const NavBar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+    const [Loading, isLoading] = useState(false);
+  
   const { user, logout, fetchUser } = useLogin();
+
   const pathname = usePathname();
   useEffect(() => {
     fetchUser();
@@ -23,9 +29,11 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
+      isLoading(true);
       await logout();
       setIsMenuOpen(false); // Close menu on logout
       router.replace("/login");
+      isLoading(false);
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -34,6 +42,17 @@ const NavBar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+        if(Loading)
+          return (
+              <div className="flex justify-center items-center min-h-[70vh]">
+                <div className="w-1/2 max-w-md">
+                  <LoadingBar value={33}/>
+                </div>
+            </div>
+      
+          );
+    
 
   return (
     <div className={styles.navbar}>
@@ -123,6 +142,7 @@ const NavBar = () => {
       </div>
 
       <div className={styles["nav-login"]}>
+        {/* <ChangeThemeButton/> */}
         {user ? (
           <>
             <Link href={"/profile"}>
@@ -134,6 +154,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
+            
             <Link href="/login">
               <button className={styles.login}>Login</button>
             </Link>

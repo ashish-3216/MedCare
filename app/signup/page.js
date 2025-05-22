@@ -9,13 +9,16 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import { useLogin } from "@/context/LoggedInContext";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingBar from "@/Components/LoadingBar";
+
 const LoginComponent = () => {
   const [userName, setUsername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const { user } = useLogin();
   const router = useRouter();
-
+  const [Loading, isLoading] = useState(false);
+  
   useEffect(() => {
     if (user) {
       router.replace("/");
@@ -71,6 +74,7 @@ const LoginComponent = () => {
         router.push('/login');
       }, 1500);
       toast.success("signup successful")
+      isLoading(false);
     } else {
       toast.error("Error:", result.message);
     }
@@ -82,6 +86,17 @@ const LoginComponent = () => {
     setUsername("");
     toast.success('reset done')
   };
+
+      if(Loading)
+        return (
+            <div className="flex justify-center items-center min-h-[70vh]">
+              <div className="w-1/2 max-w-md">
+                <LoadingBar value={33}/>
+              </div>
+          </div>
+    
+        );
+  
 
   return (
     <div className={styles.signup}>
@@ -133,7 +148,7 @@ const LoginComponent = () => {
           <Button_component
             text="Signup"
             color="#1C4A2A"
-            onClick={() => postData()}
+            onClick={() => {postData(); isLoading(true)}}
             disabled={true}
           />
           <Button_component text="Reset" onClick={handleReset} color="#C6B09A" disabled={false} />

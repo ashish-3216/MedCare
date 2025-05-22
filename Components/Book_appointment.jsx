@@ -4,8 +4,10 @@ import styles from "@/styles/book_appointment.module.css";
 import Book_Form from "./Book_Form";
 import Calendar from "./calender";
 import { useRouter } from "next/navigation";
+import LoadingBar from '@/Components/LoadingBar';
 import { toast } from "react-toastify";
 const Book_appointment = ({ data, id }) => {
+  const [Loading,setLoading] = useState(true) ;
   const [date, setDate] = useState("");
   const [toggle, setToggle] = useState(true);
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -53,8 +55,8 @@ const Book_appointment = ({ data, id }) => {
 
       const result = await response.json();
       toast.success(result.message);
+      setLoading(true);
       router.replace('/appointment');
-      router
     } catch (err) {
       console.error("Error booking appointment:", err.message);
       toast.error("Error booking appointment. Please try again.");
@@ -125,6 +127,7 @@ const Book_appointment = ({ data, id }) => {
           setMorningRemaining(8 - bookedMorningSlots);
           setEveningRemaining(8 - bookedEveningSlots);
         }
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching available slots:", err.message);
         toast.error("Error fetching available slots. Please try again.");
@@ -133,6 +136,15 @@ const Book_appointment = ({ data, id }) => {
 
     fetchAvailableSlots();
   }, [id, date]);
+
+    if (Loading)
+      return (
+        <div className="flex justify-center items-center min-h-[70vh]">
+          <div className="w-1/2 max-w-md">
+            <LoadingBar value={33} />
+          </div>
+        </div>
+      );
 
   return (
     <div className={styles.container}>
