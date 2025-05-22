@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import InputComponent from "@/Components/Input_component";
 import Button_component from "@/Components/Button_component";
@@ -18,7 +18,7 @@ const LoginComponent = () => {
   const { user } = useLogin();
   const router = useRouter();
   const [Loading, isLoading] = useState(false);
-  
+
   useEffect(() => {
     if (user) {
       router.replace("/");
@@ -47,7 +47,7 @@ const LoginComponent = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
   };
-  
+
   const postData = async () => {
     const data = {
       username: capitalizeName(userName),
@@ -55,25 +55,30 @@ const LoginComponent = () => {
       password: password,
     };
 
-    if (!(email.endsWith('@gmail.com') || email.endsWith('@tothenew.com'))) {
-      return toast.info('Currently, we only allow Gmail and To The New domain for signup/login');
+    if (!(email.endsWith("@gmail.com") || email.endsWith("@tothenew.com"))) {
+      return toast.info(
+        "Currently, we only allow Gmail and To The New domain for signup/login"
+      );
     }
-    
-    const response = await fetch( `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const result = await response.json();
 
     if (result.success) {
       setTimeout(() => {
-        router.push('/login');
+        router.push("/login");
       }, 1500);
-      toast.success("signup successful")
+      toast.success("signup successful");
       isLoading(false);
     } else {
       toast.error("Error:", result.message);
@@ -84,19 +89,17 @@ const LoginComponent = () => {
     setemail("");
     setpassword("");
     setUsername("");
-    toast.success('reset done')
+    toast.success("reset done");
   };
 
-      if(Loading)
-        return (
-            <div className="flex justify-center items-center min-h-[70vh]">
-              <div className="w-1/2 max-w-md">
-                <LoadingBar value={33}/>
-              </div>
-          </div>
-    
-        );
-  
+  if (Loading)
+    return (
+      <div className="flex justify-center items-center min-h-[70vh]">
+        <div className="w-1/2 max-w-md">
+          <LoadingBar value={33} />
+        </div>
+      </div>
+    );
 
   return (
     <div className={styles.signup}>
@@ -148,10 +151,18 @@ const LoginComponent = () => {
           <Button_component
             text="Signup"
             color="#1C4A2A"
-            onClick={() => {postData(); isLoading(true)}}
+            onClick={() => {
+              postData();
+              isLoading(true);
+            }}
             disabled={true}
           />
-          <Button_component text="Reset" onClick={handleReset} color="#C6B09A" disabled={false} />
+          <Button_component
+            text="Reset"
+            onClick={handleReset}
+            color="#C6B09A"
+            disabled={false}
+          />
         </section>
       </div>
     </div>
