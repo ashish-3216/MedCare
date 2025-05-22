@@ -13,26 +13,28 @@ const Layout = ({ children }) => {
   }, []);
   if (!user) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-6 bg-gray-100 px-4 text-center">
-        <h1 className="text-2xl font-bold text-red-600">
-          Unauthorized. Please log in.
-        </h1>
-        <div className="flex gap-4">
-          <Link
-            href="/"
-            className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition"
-          >
-            Go to Home
-          </Link>
-          <Link
-            href="/login"
-            className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition"
-          >
-            Login
-          </Link>
-        </div>
-      </div>
-    ); 
+      <div className="flex-grow flex flex-col items-center justify-center bg-gray-100 px-4 text-center">
+      <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-8">
+        Unauthorized. Please log in.
+      </h1>
+
+      <div className="flex flex-wrap gap-6">
+  <Link
+    href="/"
+    className="flex items-center justify-center text-lg rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition duration-200 w-[200px] h-[50px]"
+  >
+    Go to Home
+  </Link>
+  <Link
+    href="/login"
+    className="flex items-center justify-center text-lg rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition duration-200 w-[200px] h-[50px]"
+  >
+    Login
+  </Link>
+</div>
+
+    </div>
+    );
   }
   return <>{children}</>;
 };
