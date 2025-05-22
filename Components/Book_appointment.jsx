@@ -153,7 +153,6 @@ const Book_appointment = ({ data, id }) => {
           <div className={styles.top_text}>
             <p>Schedule Appointment</p>
           </div>
-          <button>Book Appointment</button>
         </div>
 
         <div className={styles.tab}>
@@ -239,7 +238,7 @@ const Book_appointment = ({ data, id }) => {
       />
 
       <button className={styles.Next_button} onClick={handleSubmit}>
-        Next
+        Book Appointment
       </button>
     </div>
   );
